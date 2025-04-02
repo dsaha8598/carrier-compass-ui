@@ -19,7 +19,7 @@ export default class ForgotPassword extends Component{
             <div class="mb-4"> <label class="block text-sm  text-orange-600 mb-1 font-semibold" for="email"> Email </label> <input class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="email" placeholder="Your email id" type="email"/> </div>
             <div class="flex justify-center"> <button class="w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500" type="submit"> Submit </button> </div>
          </form>
-         <div class="mt-4 text-center"> <a class="text-sm text-orange-500 hover:text-gray-900" href="/login"> Back to login </a> </div>
+         <div class="mt-4 text-center"> <a class="text-sm text-orange-500 hover:text-gray-900" href="/carrier-compass-ui/login"> Back to login </a> </div>
       </div>
    </body>
             </React.StrictMode>

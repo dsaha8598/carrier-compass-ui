@@ -30,7 +30,7 @@ export default class SignUp extends Component{
             </form>
             <div class="mt-6 text-center">
                <p class="text-gray-700"> Already have an account with us? </p>
-               <a class="text-orange-600 font-bold mt-2" href="/login"> SIGN IN </a> 
+               <a class="text-orange-600 font-bold mt-2" href="/carrier-compass-ui/login"> SIGN IN </a> 
             </div>
          </div>
       </div>

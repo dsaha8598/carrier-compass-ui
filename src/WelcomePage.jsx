@@ -16,7 +16,7 @@ render () {
          <div class="container mx-auto flex justify-between items-center py-4 px-6">
             <div class="flex items-center"> <img alt="Compass Logo" class="h-10 w-10" height="50" src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg" width="50"/> <span class="ml-2 text-xl font-bold text-orange-600"> CareerCompas </span> </div>
             <nav class="space-x-6"> <a class="text-orange-600 font-medium" href="#"> Home </a> <a class="text-gray-600 hover:text-orange-600" href="#"> About us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Services </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Contact us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Blog </a> </nav>
-            <a class="bg-orange-600 text-white px-4 py-2 rounded-md" href="/login"> Sign Up </a> 
+            <a class="bg-orange-600 text-white px-4 py-2 rounded-md" href="/carrier-compass-ui/login"> Sign In </a> 
          </div>
       </header>
        {/** Hero Section --> */}
