@@ -23,7 +23,7 @@ export default class SideBar extends Component{
                               <i class="fas fa-briefcase mr-3"> </i>
                                  <span>
                                  <NavLink
-                                    to="/#/dashbord"
+                                    to="/carrier-compass-ui/#/dashbord"
                                     className="nav-link"
                                     activeClassName="active"
                                     exact={true}
@@ -37,7 +37,7 @@ export default class SideBar extends Component{
                               <i class="fas fa-briefcase mr-3"> </i>
                                  <span>
                                  <NavLink
-                                    to="/#/dashbord"
+                                    to="/carrier-compass-ui/#/dashbord"
                                     className="nav-link"
                                     activeClassName="active"
                                     exact={true}
@@ -51,7 +51,7 @@ export default class SideBar extends Component{
                               <i class="fas fa-briefcase mr-3"> </i>
                                  <span>
                                  <NavLink
-                                    to="/#/profile"
+                                    to="/carrier-compass-ui/#/profile"
                                     className="nav-link"
                                     activeClassName="active"
                                     exact={true}
