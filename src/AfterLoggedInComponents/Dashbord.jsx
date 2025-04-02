@@ -1,25 +1,14 @@
 import React,{ Component } from "react";
 import DikshaImage from "../images/Diksha.png";
+import SideBar from "./SideBar";
 
 export default class Dashbord extends Component{
     render(){
         return (
             <React.StrictMode>
-
-         <div class="flex-1 p-6">
-            <div class="flex justify-between items-center mb-6">
-               <div class="relative"> <input class="pl-10 pr-4 py-2 rounded-full bg-gray-200 focus:outline-none" placeholder="Search" type="text"/> <i class="fas fa-search absolute left-3 top-3 text-gray-500"> </i> </div>
-               <div class="flex items-center">
-                  <i class="fas fa-bell text-gray-600 mr-6"> </i> 
-                  <div class="flex items-center" >
-                     <a href="profile-section.html"><i  class="fas fa-user-circle text-orange-500 text-3xl mr-3"></i></a>
-                     <div>
-                        <p class="text-gray-800 font-semibold"> Jane Cooper </p>
-                        <p class="text-gray-500 text-sm"> jane234@example.com </p>
-                     </div>
-                  </div>
-               </div>
-            </div>
+<div class="flex">
+  <div class="flex-1 p-6">
+            
 			<section class="bg-white py-16">
          <div class="container mx-auto flex flex-col md:flex-row items-center bg-white">
 		    <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center"> <img alt="Animated student looking through books and searching for a job" height="300" src={DikshaImage} width="400"/> </div>
@@ -130,6 +119,7 @@ export default class Dashbord extends Component{
                   <img alt="Pie chart showing analytics breakdown" height="200" src="https://storage.googleapis.com/a1aa/image/QJs0CFfadeg0vhxf4GZnEMDiWk_l6QOumoWjWkWBXXY.jpg" width="400"/> 
                </div>
             </div>
+         </div>
          </div>
    
             </React.StrictMode>
