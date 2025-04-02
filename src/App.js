@@ -7,7 +7,7 @@ import SignUp from './SignUp';
 import ForgotPassword from './ForgotPassword';
 import UserLandingPage from './AfterLoggedInComponents/UserLandingPage';
 import Dashbord from './AfterLoggedInComponents/Dashbord';
-import { BrowserRouter, Route, Router, Routes } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Router, Routes } from 'react-router-dom';
 import SideBar from './AfterLoggedInComponents/SideBar';
 import { UserNameAndEmail } from './AfterLoggedInComponents/UserNameAndEmailComponent';
 import { UserProfile } from './AfterLoggedInComponents/UserProfile';
