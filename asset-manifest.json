@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/carrier-compass-ui/static/css/main.88fec5a4.css",
-    "main.js": "/carrier-compass-ui/static/js/main.4d3a519d.js",
+    "main.js": "/carrier-compass-ui/static/js/main.1a36de75.js",
     "static/js/453.efa550db.chunk.js": "/carrier-compass-ui/static/js/453.efa550db.chunk.js",
     "static/media/IMG20250212113942.jpg": "/carrier-compass-ui/static/media/IMG20250212113942.0b45b72f2e03187651d9.jpg",
     "static/media/IMG20250213095739.jpg": "/carrier-compass-ui/static/media/IMG20250213095739.92abbffa9492b9a64f2a.jpg",
@@ -14,11 +14,11 @@
     "static/media/logo.svg": "/carrier-compass-ui/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/carrier-compass-ui/index.html",
     "main.88fec5a4.css.map": "/carrier-compass-ui/static/css/main.88fec5a4.css.map",
-    "main.4d3a519d.js.map": "/carrier-compass-ui/static/js/main.4d3a519d.js.map",
+    "main.1a36de75.js.map": "/carrier-compass-ui/static/js/main.1a36de75.js.map",
     "453.efa550db.chunk.js.map": "/carrier-compass-ui/static/js/453.efa550db.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.88fec5a4.css",
-    "static/js/main.4d3a519d.js"
+    "static/js/main.1a36de75.js"
   ]
 }
