@@ -16,7 +16,7 @@ import { UserProfile } from './AfterLoggedInComponents/UserProfile';
 function App() {
   return (
     <React.StrictMode>
-      <HashRouter basename="/carrier-compass-ui">
+      <HashRouter >
       <div className="flex">
         <SideBar></SideBar>
         <div className="flex-1 p-4">
