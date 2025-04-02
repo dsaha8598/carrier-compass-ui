@@ -22,13 +22,13 @@ function App() {
         <div className="flex-1 p-4">
         <UserNameAndEmail></UserNameAndEmail>
       <Routes>
-         <Route path='/' Component={WelcomePage}></Route>
-         <Route path='/login' Component={Login}></Route>
-         <Route path='/signup' Component={SignUp}></Route>
-         <Route path='/forgotPassword' Component={ForgotPassword}></Route>
-         <Route path='/home' Component={UserLandingPage}></Route>
-         <Route path='/dashbord' Component={Dashbord}></Route>
-         <Route path='/profile' Component={UserProfile}></Route>
+         <Route path='/' exact Component={WelcomePage}></Route>
+         <Route path='/login' exact Component={Login}></Route>
+         <Route path='/signup' exact Component={SignUp}></Route>
+         <Route path='/forgotPassword' exact Component={ForgotPassword}></Route>
+         <Route path='/home' exact Component={UserLandingPage}></Route>
+         <Route path='/dashbord' exact Component={Dashbord}></Route>
+         <Route path='/profile' exact Component={UserProfile}></Route>
       </Routes>
       </div>
       </div>
