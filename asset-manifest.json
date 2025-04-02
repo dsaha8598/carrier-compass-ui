@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/carrier-compass-ui/static/css/main.88fec5a4.css",
+    "main.js": "/carrier-compass-ui/static/js/main.b454ab08.js",
+    "static/js/453.efa550db.chunk.js": "/carrier-compass-ui/static/js/453.efa550db.chunk.js",
+    "static/media/IMG20250212113942.jpg": "/carrier-compass-ui/static/media/IMG20250212113942.0b45b72f2e03187651d9.jpg",
+    "static/media/IMG20250213095739.jpg": "/carrier-compass-ui/static/media/IMG20250213095739.92abbffa9492b9a64f2a.jpg",
+    "static/media/copy.jpg": "/carrier-compass-ui/static/media/copy.03fbe22082f87594c735.jpg",
+    "static/media/logo.png": "/carrier-compass-ui/static/media/logo.2c0ba9c9149b933bf5a1.png",
+    "static/media/login-background.png": "/carrier-compass-ui/static/media/login-background.b0712917d9fd94103b51.png",
+    "static/media/Diksha.png": "/carrier-compass-ui/static/media/Diksha.e586e5b77d25817100db.png",
+    "static/media/signup-image.png": "/carrier-compass-ui/static/media/signup-image.8744b551ac4be92f0cf2.png",
+    "static/media/forgot-password-background.png": "/carrier-compass-ui/static/media/forgot-password-background.4a319e3d850e01a74ae5.png",
+    "static/media/logo.svg": "/carrier-compass-ui/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/carrier-compass-ui/index.html",
+    "main.88fec5a4.css.map": "/carrier-compass-ui/static/css/main.88fec5a4.css.map",
+    "main.b454ab08.js.map": "/carrier-compass-ui/static/js/main.b454ab08.js.map",
+    "453.efa550db.chunk.js.map": "/carrier-compass-ui/static/js/453.efa550db.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.88fec5a4.css",
+    "static/js/main.b454ab08.js"
+  ]
+}
