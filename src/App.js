@@ -22,7 +22,7 @@ function App() {
         <div className="flex-1 p-4">
         <UserNameAndEmail></UserNameAndEmail>
       <Routes>
-         <Route path='/carrier-compass-ui/' exact Component={WelcomePage}></Route>
+         <Route path='/' exact Component={WelcomePage}></Route>
          <Route path='/login' exact Component={Login}></Route>
          <Route path='/signup' exact Component={SignUp}></Route>
          <Route path='/forgotPassword' exact Component={ForgotPassword}></Route>
