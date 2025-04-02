@@ -16,7 +16,7 @@ render () {
          <div class="container mx-auto flex justify-between items-center py-4 px-6">
             <div class="flex items-center"> <img alt="Compass Logo" class="h-10 w-10" height="50" src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg" width="50"/> <span class="ml-2 text-xl font-bold text-orange-600"> CareerCompas </span> </div>
             <nav class="space-x-6"> <a class="text-orange-600 font-medium" href="#"> Home </a> <a class="text-gray-600 hover:text-orange-600" href="#"> About us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Services </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Contact us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Blog </a> </nav>
-            <a class="bg-orange-600 text-white px-4 py-2 rounded-md" href="/carrier-compass-ui/login"> Sign In </a> 
+            <a class="bg-orange-600 text-white px-4 py-2 rounded-md" href="/#/login"> Sign In </a> 
          </div>
       </header>
        {/** Hero Section --> */}
@@ -25,7 +25,7 @@ render () {
             <div class="md:w-1/2">
                <h1 class="text-4xl font-bold text-gray-800"> We create A Clear Path to Success </h1>
                <p class="mt-4 text-gray-600"> Finding the right career path can often feel overwhelming. With countless options and paths to choose from, it’s easy to get lost in the sea of possibilities. But don't worry, your search for clarity ends here. </p>
-               <div class="mt-6"> <a class="bg-orange-600 text-white px-6 py-3 rounded-md" href="#"> Get Started </a> <a class="ml-4 text-orange-600" href="#"> Explore more </a> </div>
+               <div class="mt-6"> <a class="bg-orange-600 text-white px-6 py-3 rounded-md" href="/#/signup"> Get Started </a> <a class="ml-4 text-orange-600" href="#"> Explore more </a> </div>
             </div>
             <div class="md:w-1/2 mt-8 md:mt-0 flex justify-center"> <img alt="Animated student looking through books and searching for a job" height="300" src="https://storage.googleapis.com/a1aa/image/3RuDQbbX08tfZmXdHD9_9cRvgpvFUorI3cOrd0Qi_aQ.jpg" width="400"/> </div>
          </div>
@@ -71,7 +71,7 @@ render () {
                   <li class="flex items-center"> <i class="fas fa-check-circle text-orange-600 mr-2"> </i> <span> Acquire Missing Skills </span></li>
                   <li class="flex items-center"> <i class="fas fa-check-circle text-orange-600 mr-2"> </i> <span> March Towards Success </span> </li>
                </ul>
-               <div class="mt-6"> <a class="bg-orange-600 text-white px-6 py-3 rounded-md" href="#"> Get Started </a> <a class="ml-4 text-orange-600" href="#"> Read more </a> </div>
+               <div class="mt-6"> <a class="bg-orange-600 text-white px-6 py-3 rounded-md" href="/#/signup"> Get Started </a> <a class="ml-4 text-orange-600" href="#"> Read more </a> </div>
             </div>
          </div>
       </section>

@@ -10,7 +10,7 @@ export default class Login extends Component{
    <header class="bg-white shadow-md">
          <div class="container mx-auto flex justify-between items-center py-4 px-6">
             <div class="flex items-center"> <img alt="Compass Logo" class="h-10 w-10" height="50" src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg" width="50"/> <span class="ml-2 text-xl font-bold text-orange-600"> CareerCompas </span> </div>
-            <nav class="space-x-6"> <a class="text-orange-600 font-medium" href="#"> Home </a> <a class="text-gray-600 hover:text-orange-600" href="#"> About us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Services </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Contact us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Blog </a> </nav>
+            <nav class="space-x-6"> <a class="text-orange-600 font-medium" href="/"> Home </a> <a class="text-gray-600 hover:text-orange-600" href="#"> About us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Services </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Contact us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Blog </a> </nav>
          </div>
       </header>
       <div class="flex items-center justify-center min-h-screen">
@@ -40,8 +40,8 @@ export default class Login extends Component{
                      <label for="remember" class="text-gray-700">Remember Me?</label> 
                   </div>
                   <button class="bg-orange-500 text-white py-2 px-4 rounded-full w-full mb-4">Log In</button> 
-                  <p class="text-center text-black-600">Don't have an account? <a href="/carrier-compass-ui/signup" class="text-orange-500">REGISTER HERE</a></p>
-                  <p class="text-center text-black-600"><a href="/carrier-compass-ui/forgotPassword" class="text-orange-500">Forgot Password</a></p>
+                  <p class="text-center text-black-600">Don't have an account? <a href="/#/signup" class="text-orange-500">REGISTER HERE</a></p>
+                  <p class="text-center text-black-600"><a href="/#/forgotPassword" class="text-orange-500">Forgot Password</a></p>
                </form>
                <div class="flex items-center justify-center mt-4"> 
                   <button class="bg-orange-500 text-white py-2 px-4 rounded-full flex items-center"> 
