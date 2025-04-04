@@ -1,5 +1,6 @@
 import React,{ Component } from "react";
 import LoginBackgroundImage from "./images/login-background.png";
+import ROUTER_URLS from "./Constants/RouterUrls";
 
 export default class Login extends Component{
     render(){
@@ -40,8 +41,8 @@ export default class Login extends Component{
                      <label for="remember" class="text-gray-700">Remember Me?</label> 
                   </div>
                   <button class="bg-orange-500 text-white py-2 px-4 rounded-full w-full mb-4">Log In</button> 
-                  <p class="text-center text-black-600">Don't have an account? <a href="/carrier-compass-ui/#/signup" class="text-orange-500">REGISTER HERE</a></p>
-                  <p class="text-center text-black-600"><a href="/carrier-compass-ui/#/forgotPassword" class="text-orange-500">Forgot Password</a></p>
+                  <p class="text-center text-black-600">Don't have an account? <a href={ROUTER_URLS.SIGN_UP_URL} class="text-orange-500">REGISTER HERE</a></p>
+                  <p class="text-center text-black-600"><a href={ROUTER_URLS.FORGOT_PASSWORD_URL} class="text-orange-500">Forgot Password</a></p>
                </form>
                <div class="flex items-center justify-center mt-4"> 
                   <button class="bg-orange-500 text-white py-2 px-4 rounded-full flex items-center"> 

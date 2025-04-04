@@ -1,8 +1,8 @@
 import React,{ Component } from "react";
 import Logo from "../images/logo.png";
 import Dashbord from "./Dashbord";
-import {Route, BrowserRouter, Routes } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import ROUTER_URLS from "../Constants/RouterUrls";
 
 
 export default class SideBar extends Component{
@@ -18,12 +18,12 @@ export default class SideBar extends Component{
 				</div>
                <nav>
                   <ul>
-					      <li class="mb-4"> 
+					      <li className="mb-4"> 
                         <a class="flex items-center text-gray-600 nav-item" >
                               <i class="fas fa-briefcase mr-3"> </i>
                                  <span>
                                  <NavLink
-                                    to="/dashbord"
+                                    to={ROUTER_URLS.DASHBORD_URL}
                                     className="nav-link"
                                     activeClassName="active"
                                     exact={true}
@@ -32,12 +32,12 @@ export default class SideBar extends Component{
                               </span>
                         </a> 
                      </li>
-                     <li class="mb-4"> 
+                     <li className="mb-4"> 
                         <a class="flex items-center text-gray-600 nav-item" >
                               <i class="fas fa-briefcase mr-3"> </i>
                                  <span>
                                  <NavLink
-                                    to="/dashbord"
+                                    to={ROUTER_URLS.DASHBORD_URL}
                                     className="nav-link"
                                     activeClassName="active"
                                     exact={true}
@@ -46,12 +46,12 @@ export default class SideBar extends Component{
                               </span>
                         </a> 
                      </li>
-                     <li class="mb-4"> 
+                     <li className="mb-4"> 
                         <a class="flex items-center text-gray-600 nav-item" >
                               <i class="fas fa-briefcase mr-3"> </i>
                                  <span>
                                  <NavLink
-                                    to="/profile"
+                                    to={ROUTER_URLS.PROFILE_URL}
                                     className="nav-link"
                                     activeClassName="active"
                                     exact={true}

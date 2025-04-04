@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 .nav-link.active{
-    color: orangered;
-    border-bottom: 2px solid orangered;
+    color: orangered ;
+    text-shadow: 2px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
 }

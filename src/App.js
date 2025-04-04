@@ -4,13 +4,14 @@ import React from 'react';
 import WelcomePage from './WelcomePage';
 import Login from './LoginPage';
 import SignUp from './SignUp';
-import ForgotPassword from './ForgotPassword';
+import ForgotPasswordWithNavigate from './ForgotPassword';
 import UserLandingPage from './AfterLoggedInComponents/UserLandingPage';
 import Dashbord from './AfterLoggedInComponents/Dashbord';
 import { BrowserRouter, HashRouter, Route, Router, Routes } from 'react-router-dom';
 import SideBar from './AfterLoggedInComponents/SideBar';
 import { UserNameAndEmail } from './AfterLoggedInComponents/UserNameAndEmailComponent';
 import { UserProfile } from './AfterLoggedInComponents/UserProfile';
+import OtpValidationNavigate from './OTPVerification';
 
 
 function App() {
@@ -25,10 +26,11 @@ function App() {
          <Route path='/' exact Component={WelcomePage}></Route>
          <Route path='/login' exact Component={Login}></Route>
          <Route path='/signup' exact Component={SignUp}></Route>
-         <Route path='/forgotPassword' exact Component={ForgotPassword}></Route>
+         <Route path='/forgotPassword' element={<ForgotPasswordWithNavigate />}></Route>
          <Route path='/home' exact Component={UserLandingPage}></Route>
          <Route path='/dashbord' exact Component={Dashbord}></Route>
          <Route path='/profile' exact Component={UserProfile}></Route>
+         <Route path='/verify/otp' element={<OtpValidationNavigate />}></Route>
       </Routes>
       </div>
       </div>

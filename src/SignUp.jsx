@@ -1,5 +1,6 @@
 import React,{ Component } from "react";
 import SignupBackgroundImage from "./images/signup-image.png"
+import ROUTER_URLS from "./Constants/RouterUrls";
 
 export default class SignUp extends Component{
     render(){
@@ -30,7 +31,7 @@ export default class SignUp extends Component{
             </form>
             <div class="mt-6 text-center">
                <p class="text-gray-700"> Already have an account with us? </p>
-               <a class="text-orange-600 font-bold mt-2" href="/carrier-compass-ui/#/login"> SIGN IN </a> 
+               <a class="text-orange-600 font-bold mt-2" href={ROUTER_URLS.LOGIN_URL}> SIGN IN </a> 
             </div>
          </div>
       </div>
