@@ -10,7 +10,7 @@ render () {
   return (
     <React.StrictMode>
     
-    <body class="font-roboto">
+    <div class="absolute top-0 left-0 w-screen h-screen font-roboto">
       {/**  Header */}
       <header class="bg-white shadow-md">
          <div class="container mx-auto flex justify-between items-center py-4 px-6">
@@ -113,7 +113,7 @@ render () {
             </div>
          </div>
       </footer>
-   </body>
+   </div>
 
  </React.StrictMode>
   );

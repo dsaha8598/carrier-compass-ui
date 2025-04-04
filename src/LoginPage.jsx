@@ -1,19 +1,26 @@
 import React,{ Component } from "react";
 import LoginBackgroundImage from "./images/login-background.png";
 import ROUTER_URLS from "./Constants/RouterUrls";
+import Logo from "./images/logo.png"
 
 export default class Login extends Component{
     render(){
         return (
             <React.StrictMode>
            
-   <body class="bg-gray-200">
-   <header class="bg-white shadow-md">
-         <div class="container mx-auto flex justify-between items-center py-4 px-6">
-            <div class="flex items-center"> <img alt="Compass Logo" class="h-10 w-10" height="50" src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg" width="50"/> <span class="ml-2 text-xl font-bold text-orange-600"> CareerCompas </span> </div>
-            <nav class="space-x-6"> <a class="text-orange-600 font-medium" href="/"> Home </a> <a class="text-gray-600 hover:text-orange-600" href="#"> About us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Services </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Contact us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Blog </a> </nav>
-         </div>
-      </header>
+   <div class="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100">
+   <header className="absolute top-4 left-4 flex items-center">
+                        <img
+                            alt="Compass Logo"
+                            className="h-10 w-10"
+                            height="50"
+                            src={Logo}
+                            width="50"
+                        />
+                        <h1 className="text-2xl font-bold ml-3 text-left text-orange-500">
+                            CareerCompass
+                        </h1>
+                    </header>
       <div class="flex items-center justify-center min-h-screen">
          <div class="bg-white rounded-lg shadow-lg flex max-w-4xl w-full">
             <div class="bg-white-600 rounded-l-lg p-8 flex flex-col items-center justify-center w-1/2">
@@ -53,7 +60,7 @@ export default class Login extends Component{
             </div>
          </div>
       </div>
-   </body>
+   </div>
             </React.StrictMode>
         );
     }
