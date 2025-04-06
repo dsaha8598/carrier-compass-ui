@@ -83,7 +83,7 @@ class SignUp extends Component {
         this.setState({ loading: false, error: null });
 
         // Navigate to OTP page with email
-        this.props.navigate("/verify/otp", { state: { email: this.state.email } });
+        this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
 
       } catch (error) {
         console.error("Registration failed:", error);
@@ -192,7 +192,7 @@ class SignUp extends Component {
 
             <div className="mt-6 text-center">
               <p className="text-gray-700">Already have an account with us?</p>
-              <a className="text-orange-600 font-bold mt-2" href={ROUTER_URLS.LOGIN_URL}>
+              <a className="text-orange-600 font-bold mt-2" href={"/#"+ROUTER_URLS.LOGIN_URL}>
                 SIGN IN
               </a>
             </div>

@@ -106,7 +106,7 @@ import { useNavigate } from "react-router-dom";
 
          try {
          // Make GET API request
-         const response = await fetch(`http://localhost:8181/careerCompass/user/send/otp?email=${this.state.email}`);
+         const response = await fetch(`http://localhost:8181/careerCompass/user/send/otp?email=${this.state.email}&pageSource=forgotPassword`);
             
          if (!response.ok) {
              throw new Error("Failed to send OTP, Please Retry");
@@ -117,7 +117,7 @@ import { useNavigate } from "react-router-dom";
 
          if(data.message === "OTP sent successfully"){
              // ✅ Navigate to "/verify/otp" and pass email
-          this.props.navigate("/verify/otp", { state: { email: this.state.email } });
+          this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "forgotPassword" } });
          }
          window.alert(data.message);
          this.setState({loading:false});

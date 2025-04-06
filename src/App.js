@@ -12,6 +12,7 @@ import SideBar from './AfterLoggedInComponents/SideBar';
 import { UserNameAndEmail } from './AfterLoggedInComponents/UserNameAndEmailComponent';
 import { UserProfile } from './AfterLoggedInComponents/UserProfile';
 import OtpValidationNavigate from './OTPVerification';
+import PasswordUpdateNavigate from './UpdatePassword';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
          <Route path='/dashbord' exact Component={Dashbord}></Route>
          <Route path='/profile' exact Component={UserProfile}></Route>
          <Route path='/verify/otp' element={<OtpValidationNavigate />}></Route>
+         <Route path='/update/password' element={<PasswordUpdateNavigate />}></Route>
       </Routes>
       </div>
       </div>
