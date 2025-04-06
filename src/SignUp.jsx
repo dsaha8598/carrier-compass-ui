@@ -78,12 +78,18 @@ class SignUp extends Component {
           }),
         });
 
-        const result = await response.json();
-        console.log("Server Response:", result);
-        this.setState({ loading: false, error: null });
-
-        // Navigate to OTP page with email
-        this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
+        if (!response.ok){ 
+          throw new Error("Password update failed.");
+        }
+        else{
+          const result = await response.json();
+          console.log("Server Response:", result);
+          this.setState({ loading: false, error: null });
+  
+          // Navigate to OTP page with email
+          this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
+        }
+        
 
       } catch (error) {
         console.error("Registration failed:", error);

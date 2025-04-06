@@ -3,6 +3,7 @@ import Logo from "./images/logo.png";
 import OTPBackgroundImage from "./images/verify-otp-background.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import ROUTER_URLS from "./Constants/RouterUrls";
+import Loader from "./Loader";
 
 class OtpValidation extends Component {
     constructor(props) {
@@ -154,10 +155,7 @@ class OtpValidation extends Component {
 
                 {/* Loader */}
                 {loading ? (
-                    <div className="flex flex-col items-center">
-                        <div className="w-12 h-12 border-4 border-orange-500 border-dotted rounded-full animate-spin"></div>
-                        <p className="mt-3 text-lg font-semibold text-orange-500">Loading...</p>
-                    </div>
+                    <Loader></Loader>
                 ) : (
                     <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div className="bg-white p-6 rounded-lg shadow-md w-full md:w-80">
