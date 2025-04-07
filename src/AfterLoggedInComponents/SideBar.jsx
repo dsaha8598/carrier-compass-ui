@@ -3,6 +3,7 @@ import Logo from "../images/logo.png";
 import { NavLink } from "react-router-dom";
 import ROUTER_URLS from "../Constants/RouterUrls";
 import { useNavigate } from "react-router-dom";
+import { withAuth } from "../AuthContext/withAuth";
 
 // Utility to use `navigate` inside class component
 function withRouter(Component) {
@@ -14,31 +15,10 @@ function withRouter(Component) {
 
  class SideBar extends Component {
 
-   handleLogout = async () => {
-      this.props.navigate("/");
-      /** try {
-         // Step 1: Call logout API
-          const response = await fetch("https://your-api.com/logout", {
-              method: "POST",
-              credentials: "include", // If using cookies
-              headers: {
-                  "Content-Type": "application/json",
-                  // Add auth headers if needed
-              },
-          });
-
-          if (response.ok) {
-              // Step 2: Clear local/session storage (optional)
-              localStorage.removeItem("authToken");
-
-              // Step 3: Redirect to home page
-              this.props.navigate("/");
-          } else {
-              console.error("Logout failed");
-          }
-      } catch (error) {
-          console.error("Error logging out:", error);
-      }*/
+   handleLogout = async (e) => {
+    e.preventDefault();
+    this.props.auth.logout();
+    this.props.navigate(ROUTER_URLS.BASE_URL || "/");
   };
 
     render() {
@@ -70,7 +50,7 @@ function withRouter(Component) {
                                 </li>
                                 <li className="mb-2">
                                     <NavLink
-                                        to={ROUTER_URLS.DASHBORD_URL}
+                                        to={ROUTER_URLS.PROFILE_URL}
                                         className={({ isActive }) =>
                                             `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
                                                 isActive
@@ -146,4 +126,4 @@ function withRouter(Component) {
 
 
 // Wrap and export with navigation
-export default withRouter(SideBar);
+export default withAuth(withRouter(SideBar));

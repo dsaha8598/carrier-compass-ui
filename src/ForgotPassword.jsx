@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import forgotpasswordimage from "./images/forgot-password-background.png";
 import ROUTER_URLS from "./Constants/RouterUrls";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
  class ForgotPassword extends Component {
     constructor(props) {
@@ -29,12 +30,8 @@ import { useNavigate } from "react-router-dom";
                     </header>
 
                     {/** if loading is true then ui will display a loading page otherwise it will display forgot password page*/}
-                    {this.state.loading ? (
-                        <div className="flex flex-col items-center">
-                        <div className="w-12 h-12 border-4 border-orange-500 border-dotted rounded-full animate-spin"></div>
-                        <p className="mt-3 text-lg font-semibold text-orange-500">Loading...</p>
-                        </div>
-                    ) : (
+                    {this.state.loading ? ( <Loader/>) 
+                    : (
                     <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
                         <div className="flex justify-center mb-4">
                             <img

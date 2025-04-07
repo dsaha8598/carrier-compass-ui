@@ -87,7 +87,7 @@ class SignUp extends Component {
           this.setState({ loading: false, error: null });
   
           // Navigate to OTP page with email
-          this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
+          this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp"} });
         }
         
 

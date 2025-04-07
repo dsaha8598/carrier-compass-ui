@@ -4,6 +4,7 @@ import OTPBackgroundImage from "./images/verify-otp-background.png";
 import { useLocation, useNavigate } from "react-router-dom";
 import ROUTER_URLS from "./Constants/RouterUrls";
 import Loader from "./Loader";
+import { withAuth } from "./AuthContext/withAuth";
 
 class OtpValidation extends Component {
     constructor(props) {
@@ -96,7 +97,7 @@ class OtpValidation extends Component {
     };
 
     handleVerify = async () => {
-        const pageSource = this.props.location?.state?.pageSource;
+        const pageSource = this.props.location?.state?.pageSource ;
         const { otp } = this.state;
         const email = this.props.location?.state?.email;
         const otpString = otp.join("");
@@ -125,7 +126,17 @@ class OtpValidation extends Component {
             console.log("pagesource:", pageSource);
             switch (pageSource) {
                 case "signUp":
-                    this.props.navigate(ROUTER_URLS.DASHBOARD_URL || "/dashboard");
+                    try {
+                        const success = this.props.auth.updateAuthTokenAfterUserRegisters(result.user);
+                       
+                        if (success) {
+                          this.props.navigate(ROUTER_URLS.DASHBORD_URL || "/home/dashbord");
+                        } else {
+                          this.setState({ error: "Invalid email or password." });
+                        }
+                      } catch (error) {
+                        this.setState({ error: "Login failed. Please try again later." });
+                      }
                     break;
                 case "forgotPassword":
                     this.props.navigate(ROUTER_URLS.UPDATE_PASSWORD_URL || "/updatePassword", { state: { email: email} });
@@ -236,4 +247,4 @@ function OtpValidationNavigate(props) {
     return <OtpValidation {...props} navigate={navigate} location={location} />;
 }
 
-export default OtpValidationNavigate;
+export default withAuth(OtpValidationNavigate);

@@ -4,6 +4,7 @@ import ROUTER_URLS from "./Constants/RouterUrls";
 import Logo from "./images/logo.png";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
+import { withAuth } from "./AuthContext/withAuth";
 
 
 // Utility to use `navigate` inside class component
@@ -46,34 +47,18 @@ class Login extends Component {
     if (!this.validateForm()) return;
 
     try {
-      const response = await fetch("http://localhost:8181/careerCompass/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-          password: this.state.password,
-        }),
-      });
-
-      if (!response.ok){ 
-         throw new Error("Password update failed.");
-       } 
-
-      if (response.ok) {
-        const data = await response.json();
-        this.props.navigate(ROUTER_URLS.DASHBORD_URL || "/dashbord", { state: { userData: data } });
-      } else if (response.status === 500) {
-        this.setState({ error: "Invalid email or password." });
+      const success = await this.props.auth.login(this.state.email, this.state.password);
+     
+      if (success) {
+        this.props.navigate(ROUTER_URLS.DASHBORD_URL || "/home/dashbord");
       } else {
-        this.setState({ error: "Something went wrong. Please try again." });
+        this.setState({ error: "Invalid email or password." });
       }
     } catch (error) {
       this.setState({ error: "Login failed. Please try again later." });
     }
     finally{
-      this.setState({loading:true});
+      this.setState({loading:false});
     }
   };
 
@@ -178,4 +163,4 @@ class Login extends Component {
  };
 }
 
-export default withRouter(Login);
+export default withAuth(withRouter(Login));
