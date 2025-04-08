@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AuthContext } from './AuthContextContext';
+import Loader from '../Loader'
 
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(() => localStorage.getItem("access_token"));
@@ -12,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     const fetchUser = async () => {
       if (authToken && !isFirstTimeUser.current) { // ✅ check .current
+        
         try {
           const res = await fetch("http://localhost:8181/careerCompass/user/details", {
             headers: { Authorization: `Bearer ${authToken}` },
@@ -49,7 +51,7 @@ export const AuthProvider = ({ children }) => {
         } catch {
           logout();
         }
-      }, 8 * 60 * 1000);
+      }, 120 * 60 * 1000);
     }
 
     return () => {
@@ -99,7 +101,8 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {/**if api call is still executing loading will be true and a loader animation will be displayed */}
+      {loading ? <Loader /> : children}
     </AuthContext.Provider>
   );
 };
