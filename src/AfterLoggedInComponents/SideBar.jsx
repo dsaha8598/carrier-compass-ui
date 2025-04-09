@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import ROUTER_URLS from "../Constants/RouterUrls";
 import { useNavigate } from "react-router-dom";
 import { withAuth } from "../AuthContext/withAuth";
+import QuizApp from "./QuizComponent";
 
 // Utility to use `navigate` inside class component
 function withRouter(Component) {
@@ -60,12 +61,12 @@ function withRouter(Component) {
                                         }
                                     >
                                         <i className="fas fa-search mr-3"></i>
-                                        Career Explorer
+                                        Your Profile
                                     </NavLink>
                                 </li>
                                 <li className="mb-2">
                                     <NavLink
-                                        to={ROUTER_URLS.PROFILE_URL}
+                                        to={ROUTER_URLS.QUIZ_URL}
                                         className={({ isActive }) =>
                                             `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
                                                 isActive
@@ -75,7 +76,7 @@ function withRouter(Component) {
                                         }
                                     >
                                         <i className="fas fa-briefcase mr-3"></i>
-                                        Job Listings
+                                        Quiz
                                     </NavLink>
                                 </li>
                                 <li className="mb-2">

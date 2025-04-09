@@ -7,7 +7,9 @@ const ROUTER_URLS = {
     DASHBORD_URL: "/home/dashbord",
     PROFILE_URL: "/home/profile",
     VERIFY_OTP_URL: "/cart",
-    UPDATE_PASSWORD_URL: "/update/password"
+    UPDATE_PASSWORD_URL: "/update/password",
+    QUIZ_URL: "/home/quiz",
+    APP_URL: "/home/quiz"
   };
 
   

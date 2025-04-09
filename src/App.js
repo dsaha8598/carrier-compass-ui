@@ -12,6 +12,7 @@ import OtpValidationNavigate from './OTPVerification';
 import PasswordUpdateNavigate from './UpdatePassword';
 import { AuthProvider } from './AuthContext/AuthContext';
 import PrivateRoute from './AuthContext/PrivateRoute';
+import Quiz from './AfterLoggedInComponents/QuizComponent';
 
 function App() {
   return (
@@ -43,6 +44,14 @@ function App() {
                 element={
                   <PrivateRoute>
                     <UserProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='quiz'
+                element={
+                  <PrivateRoute>
+                   <Quiz />
                   </PrivateRoute>
                 }
               />
