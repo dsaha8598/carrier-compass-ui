@@ -3,13 +3,11 @@ import {
   GraduationCap,
   Stethoscope,
   Settings,
-  Pill,
-  LucideIcon
+  Pill
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { withAuth } from "../AuthContext/withAuth";
 
-// Icon mapping utility
 const iconMap = {
   GraduationCap,
   Stethoscope,
@@ -22,61 +20,188 @@ class WhatNext extends Component {
     super(props);
     this.state = {
       paths: [],
+      expandedIndex: null,
     };
   }
 
   componentDidMount() {
-    // Simulate server call
     const serverData = [
-      { name: "Graduation", icon: "GraduationCap", color: "text-orange-500" },
-      { name: "Medical", icon: "Stethoscope", color: "text-red-500" },
-      { name: "Engineering", icon: "Settings", color: "text-blue-500" },
-      { name: "Pharmacy", icon: "Pill", color: "text-green-500" },
+      {
+        name: "Engineering (PCM)",
+        icon: "GraduationCap",
+        options: [
+          "B.Tech/B.E. (CSE, Mechanical, Civil, etc.)",
+          "Entrance: JEE, CET, VITEEE"
+        ],
+        color: "text-orange-500"
+      },
+      {
+        name: "Medical & Allied (PCB)",
+        icon: "Stethoscope",
+        options: [
+          "MBBS, BDS, BAMS, BHMS, BPT",
+          "B.Sc. Nursing, B.Pharm",
+          "Entrance: NEET"
+        ],
+        color: "text-red-500"
+      },
+      {
+        name: "Pure Sciences",
+        icon: "Settings",
+        options: [
+          "B.Sc. Physics, Chemistry, Math, Biology",
+          "Biotech, Microbiology, Statistics",
+          "Research Careers"
+        ],
+        color: "text-blue-500"
+      },
+      {
+        name: "Commerce & Management",
+        icon: "Pill",
+        options: [
+          "BBA, BMS, B.Com (Hons)",
+          "BA Economics, MBA"
+        ],
+        color: "text-green-500"
+      },
+      {
+        name: "Medical & Allied (PCB)",
+        icon: "Stethoscope",
+        options: [
+          "MBBS, BDS, BAMS, BHMS, BPT",
+          "B.Sc. Nursing, B.Pharm",
+          "Entrance: NEET"
+        ],
+        color: "text-red-500"
+      },
+      {
+        name: "Pure Sciences",
+        icon: "Settings",
+        options: [
+          "B.Sc. Physics, Chemistry, Math, Biology",
+          "Biotech, Microbiology, Statistics",
+          "Research Careers"
+        ],
+        color: "text-blue-500"
+      },
+      {
+        name: "Commerce & Management",
+        icon: "Pill",
+        options: [
+          "BBA, BMS, B.Com (Hons)",
+          "BA Economics, MBA"
+        ],
+        color: "text-green-500"
+      }
     ];
-    
-    // You can replace this with an actual API call
     this.setState({ paths: serverData });
   }
 
+  handleCircleClick = (index) => {
+    this.setState((prev) => ({
+      expandedIndex: prev.expandedIndex === index ? null : index
+    }));
+  };
+
   renderIcon(iconName, color) {
     const IconComponent = iconMap[iconName] || GraduationCap;
-    return <IconComponent className={`${color}`} size={28} />;
+    return <IconComponent className={`${color}`} size={24} />;
   }
 
   render() {
-    return (
-      <div className="max-w-md mx-auto p-4">
-        <h2 className="text-2xl font-bold text-center mb-6 text-orange-600">
-          What's Next After 12th?
-        </h2>
-        <div className="relative border-l-2 border-orange-300 pl-6">
-          <div className="mb-8 relative">
-            <div className="w-4 h-4 bg-orange-500 rounded-full absolute -left-2 top-1" />
-            <div className="bg-orange-100 p-3 rounded-xl shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-800">12th</h3>
-              <p className="text-sm text-gray-500">Your current qualification</p>
-            </div>
-          </div>
+    const centerX = 300;
+    const centerY = 300;
+    const total = this.state.paths.length;
+    const radius = 120 + total * 10;
+    const expandedRadius = 90;
+    const defaultRadius = 40;
 
-          {this.state.paths.map((path, index) => (
-            <div className="mb-6 relative" key={index}>
-              <div className="w-4 h-4 bg-gray-300 rounded-full absolute -left-2 top-2.5" />
-              <div className="bg-white p-4 rounded-xl shadow-md flex items-center gap-3 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+    return (
+      <div className="relative w-full h-[600px] flex items-center justify-center bg-white">
+        <header className="absolute top-6 w-full text-left text-sm text-gray-500">
+          Click a bubble to explore your career path.
+        </header>
+        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+          {this.state.paths.map((_, i) => {
+            const angle = (2 * Math.PI * i) / total;
+            const x = centerX + radius * Math.cos(angle);
+            const y = centerY + radius * Math.sin(angle);
+            return (
+              <line
+                key={i}
+                x1={centerX}
+                y1={centerY}
+                x2={x}
+                y2={y}
+                stroke="#ccc"
+                strokeWidth="2"
+              />
+            );
+          })}
+        </svg>
+
+        <div
+          className="absolute z-10 p-4 bg-orange-500 text-white font-bold rounded-full shadow-lg text-center"
+          style={{ left: centerX - 50, top: centerY - 50, width: 100, height: 100 }}
+        >
+          <div className="flex flex-col justify-center items-center h-full">
+            <div className="text-sm">12th</div>
+            <div className="text-xs font-normal">Science</div>
+          </div>
+        </div>
+
+        {this.state.paths.map((path, i) => {
+          const angle = (2 * Math.PI * i) / total;
+          const x = centerX + radius * Math.cos(angle);
+          const y = centerY + radius * Math.sin(angle);
+          const isExpanded = this.state.expandedIndex === i;
+          const size = isExpanded ? expandedRadius * 2 : defaultRadius * 2;
+          const offset = size / 2;
+
+          return (
+            <div
+              key={i}
+              className={`absolute transition-all duration-300 ease-in-out cursor-pointer shadow-md ${
+                isExpanded ? "z-20" : "z-10"
+              }`}
+              style={{
+                top: y - offset,
+                left: x - offset,
+                width: size,
+                height: size,
+                borderRadius: "9999px",
+                backgroundColor: "#fff",
+                border: "1px solid #eee",
+              }}
+              onClick={() => this.handleCircleClick(i)}
+            >
+              <div className="flex flex-col items-center justify-center h-full p-2 text-center">
                 {this.renderIcon(path.icon, path.color)}
-                <span className="text-md font-medium text-gray-700">{path.name}</span>
+                <span className="text-[10px] font-semibold text-gray-700">{path.name}</span>
+                {isExpanded && (
+                  <div className="mt-2 text-[10px] text-gray-600 space-y-1 max-w-[110px] overflow-y-auto">
+                    {path.options.map((opt, idx) => (
+                      <div key={idx} className="bg-orange-100 px-2 py-1 rounded text-[10px]">
+                        {opt}
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-          ))}
+          );
+        })}
+
+        <div className="absolute bottom-6 w-full text-center text-sm text-gray-500">
+          Click a bubble to explore your career path.
         </div>
       </div>
     );
   }
 }
 
-// Wrap and export with navigation
 export default withAuth(withRouter(WhatNext));
 
-// Utility to use `navigate` inside class component
 function withRouter(Component) {
   return function WrappedComponent(props) {
     const navigate = useNavigate();
