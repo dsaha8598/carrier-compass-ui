@@ -1,59 +1,166 @@
-import React,{ Component } from "react";
+import React, { Component } from "react";
 import LoginBackgroundImage from "./images/login-background.png";
+import ROUTER_URLS from "./Constants/RouterUrls";
+import Logo from "./images/logo.png";
+import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
+import { withAuth } from "./AuthContext/withAuth";
 
-export default class Login extends Component{
-    render(){
-        return (
-            <React.StrictMode>
-           
-   <body class="bg-gray-200">
-   <header class="bg-white shadow-md">
-         <div class="container mx-auto flex justify-between items-center py-4 px-6">
-            <div class="flex items-center"> <img alt="Compass Logo" class="h-10 w-10" height="50" src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg" width="50"/> <span class="ml-2 text-xl font-bold text-orange-600"> CareerCompas </span> </div>
-            <nav class="space-x-6"> <a class="text-orange-600 font-medium" href="/"> Home </a> <a class="text-gray-600 hover:text-orange-600" href="#"> About us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Services </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Contact us </a> <a class="text-gray-600 hover:text-orange-600" href="#"> Blog </a> </nav>
-         </div>
-      </header>
-      <div class="flex items-center justify-center min-h-screen">
-         <div class="bg-white rounded-lg shadow-lg flex max-w-4xl w-full">
-            <div class="bg-white-600 rounded-l-lg p-8 flex flex-col items-center justify-center w-1/2">
-               <img alt="signing in image" src={LoginBackgroundImage} />
 
-            </div>
-            <div class="p-8 w-1/2">
-               <h2 class="text-2xl font-bold mb-4">Members Log in</h2>
-               <p class="text-gray-600 mb-6">Sign in to continue your journey with Us. Let's begin from where you left !!</p>
-               <form>
-                  <div class="mb-4"> 
-                     <label class="block text-gray-700"> 
-                        <i class="fas fa-user mr-2"></i> 
-                        <input type="text" placeholder="Username" class="border-b-2 border-gray-300 w-full py-2 focus:outline-none focus:border-yellow-500"/>
-                     </label> 
-                  </div>
-                  <div class="mb-4"> 
-                     <label class="block text-gray-700"> 
-                        <i class="fas fa-lock mr-2"></i> 
-                        <input type="password" placeholder="Password" class="border-b-2 border-gray-300 w-full py-2 focus:outline-none focus:border-yellow-500"/>
-                     </label> 
-                  </div>
-                  <div class="flex items-center mb-4"> 
-                     <input type="checkbox" id="remember" class="mr-2"/>
-                     <label for="remember" class="text-gray-700">Remember Me?</label> 
-                  </div>
-                  <button class="bg-orange-500 text-white py-2 px-4 rounded-full w-full mb-4">Log In</button> 
-                  <p class="text-center text-black-600">Don't have an account? <a href="/carrier-compass-ui/#/signup" class="text-orange-500">REGISTER HERE</a></p>
-                  <p class="text-center text-black-600"><a href="/carrier-compass-ui/#/forgotPassword" class="text-orange-500">Forgot Password</a></p>
-               </form>
-               <div class="flex items-center justify-center mt-4"> 
-                  <button class="bg-orange-500 text-white py-2 px-4 rounded-full flex items-center"> 
-                     <i class="fab fa-facebook-f mr-2"></i> Log in with Social Media 
-                  </button> 
-               </div>
-               <p class="text-center text-gray-600 mt-4">Log in using social media to continue with CareerCompas</p>
-            </div>
-         </div>
-      </div>
-   </body>
-            </React.StrictMode>
-        );
+// Utility to use `navigate` inside class component
+function withRouter(Component) {
+   return function WrappedComponent(props) {
+     const navigate = useNavigate();
+     return <Component {...props} navigate={navigate} />;
+   };
+ }
+
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      error: "",
+      loading: false,
+      error: null
+    };
+  }
+
+  validateForm = () => {
+    const { email, password } = this.state;
+    if (!email || !password) {
+      this.setState({ error: "Email and Password are required." });
+      return false;
     }
-} 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      this.setState({ error: "Invalid email format." });
+      return false;
+    }
+    return true;
+  };
+
+  handleLogin = async (e) => {
+    this.setState({loading:true});
+    e.preventDefault();
+    if (!this.validateForm()) return;
+
+    try {
+      const success = await this.props.auth.login(this.state.email, this.state.password);
+     
+      if (success) {
+        this.props.navigate(ROUTER_URLS.DASHBORD_URL || "/home/dashbord");
+      } else {
+        this.setState({ error: "Invalid email or password." });
+      }
+    } catch (error) {
+      this.setState({ error: "Login failed. Please try again later." });
+    }
+    finally{
+      this.setState({loading:false});
+    }
+  };
+
+  render() {
+    return (
+      <React.StrictMode>
+        {this.state.loading ? <Loader></Loader> : this.loginPageContent(this.state.error)}
+      </React.StrictMode>
+    );
+  }
+
+  loginPageContent = (error) => {
+   return (
+      <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100">
+      <header className="absolute top-4 left-4 flex items-center">
+        <img
+          alt="Compass Logo"
+          className="h-10 w-10"
+          height="50"
+          src={Logo}
+          width="50"
+        />
+        <h1 className="text-2xl font-bold ml-3 text-left text-orange-500">
+          CareerCompass
+        </h1>
+      </header>
+
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="bg-white rounded-lg shadow-lg flex max-w-4xl w-full">
+          <div className="bg-white-600 rounded-l-lg p-8 flex flex-col items-center justify-center w-1/2">
+            <img alt="signing in image" src={LoginBackgroundImage} />
+          </div>
+
+          <div className="p-8 w-1/2">
+            <h2 className="text-2xl font-bold mb-4">Members Log in</h2>
+            <p className="text-gray-600 mb-6">
+              Sign in to continue your journey with Us. Let's begin from where you left !!
+            </p>
+
+            {this.state.error && (
+              <div className="mb-4 text-red-600 font-semibold text-center">{this.state.error}</div>
+            )}
+
+            <form onSubmit={this.handleLogin}>
+              <div className="mb-4">
+                <label className="block text-gray-700">
+                  <i className="fas fa-user mr-2"></i>
+                  <input
+                    type="text"
+                    placeholder="Email"
+                    className="border-b-2 border-gray-300 w-full py-2 focus:outline-none focus:border-yellow-500"
+                    value={this.state.email}
+                    onChange={(e) => this.setState({ email: e.target.value })}
+                  />
+                </label>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-gray-700">
+                  <i className="fas fa-lock mr-2"></i>
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    className="border-b-2 border-gray-300 w-full py-2 focus:outline-none focus:border-yellow-500"
+                    value={this.state.password}
+                    onChange={(e) => this.setState({ password: e.target.value })}
+                  />
+                </label>
+              </div>
+
+              <div className="flex items-center mb-4">
+                <input type="checkbox" id="remember" className="mr-2" />
+                <label htmlFor="remember" className="text-gray-700">Remember Me?</label>
+              </div>
+
+              <button type="submit" className="bg-orange-500 text-white py-2 px-4 rounded-full w-full mb-4">
+                Log In
+              </button>
+
+              <p className="text-center text-black-600">
+                Don't have an account? <a href={ROUTER_URLS.SIGN_UP_URL} className="text-orange-500">REGISTER HERE</a>
+              </p>
+              <p className="text-center text-black-600">
+                <a href={ROUTER_URLS.FORGOT_PASSWORD_URL} className="text-orange-500">Forgot Password</a>
+              </p>
+            </form>
+
+            <div className="flex items-center justify-center mt-4">
+              <button className="bg-orange-500 text-white py-2 px-4 rounded-full flex items-center">
+                <i className="fab fa-facebook-f mr-2"></i> Log in with Social Media
+              </button>
+            </div>
+
+            <p className="text-center text-gray-600 mt-4">
+              Log in using social media to continue with CareerCompass
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+   );
+ };
+}
+
+export default withAuth(withRouter(Login));

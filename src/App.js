@@ -1,41 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
 import React from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
+
 import WelcomePage from './WelcomePage';
 import Login from './LoginPage';
 import SignUp from './SignUp';
-import ForgotPassword from './ForgotPassword';
+import ForgotPasswordWithNavigate from './ForgotPassword';
 import UserLandingPage from './AfterLoggedInComponents/UserLandingPage';
 import Dashbord from './AfterLoggedInComponents/Dashbord';
-import { BrowserRouter, HashRouter, Route, Router, Routes } from 'react-router-dom';
-import SideBar from './AfterLoggedInComponents/SideBar';
-import { UserNameAndEmail } from './AfterLoggedInComponents/UserNameAndEmailComponent';
 import { UserProfile } from './AfterLoggedInComponents/UserProfile';
-
+import OtpValidationNavigate from './OTPVerification';
+import PasswordUpdateNavigate from './UpdatePassword';
+import { AuthProvider } from './AuthContext/AuthContext';
+import PrivateRoute from './AuthContext/PrivateRoute';
+import Quiz from './AfterLoggedInComponents/QuizComponent';
 
 function App() {
   return (
     <React.StrictMode>
-      <HashRouter >
-      <div className="flex">
-        <SideBar></SideBar>
-        <div className="flex-1 p-4">
-        <UserNameAndEmail></UserNameAndEmail>
-      <Routes>
-         <Route path='/' exact Component={WelcomePage}></Route>
-         <Route path='/login' exact Component={Login}></Route>
-         <Route path='/signup' exact Component={SignUp}></Route>
-         <Route path='/forgotPassword' exact Component={ForgotPassword}></Route>
-         <Route path='/home' exact Component={UserLandingPage}></Route>
-         <Route path='/dashbord' exact Component={Dashbord}></Route>
-         <Route path='/profile' exact Component={UserProfile}></Route>
-      </Routes>
-      </div>
-      </div>
-      
+      <HashRouter>
+      <AuthProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route path='/' element={<WelcomePage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/forgotPassword' element={<ForgotPasswordWithNavigate />} />
+          <Route path='/verify/otp' element={<OtpValidationNavigate />} />
+          <Route path='/update/password' element={<PasswordUpdateNavigate />} />
+
+         
+          {/* Protected Routes inside Layout */}
+          <Route path='/home' element={<UserLandingPage />}>
+              <Route
+                path='dashbord'
+                element={
+                  <PrivateRoute>
+                    <Dashbord />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='profile'
+                element={
+                  <PrivateRoute>
+                    <UserProfile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='quiz'
+                element={
+                  <PrivateRoute>
+                   <Quiz />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
+          
+        </Routes>
+        </AuthProvider>
       </HashRouter>
-    
- </React.StrictMode>
+    </React.StrictMode>
   );
 }
 
