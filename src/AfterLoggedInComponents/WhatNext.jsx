@@ -117,83 +117,92 @@ class WhatNext extends Component {
     const defaultRadius = 40;
 
     return (
-      <div className="relative w-full h-[600px] flex items-center justify-center bg-white">
-        <header className="absolute top-6 w-full text-left text-sm text-gray-500">
-          Click a bubble to explore your career path.
-        </header>
-        <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          {this.state.paths.map((_, i) => {
+      <div className="relative w-full h-[680px] flex flex-col items-center justify-start bg-white">
+
+        {/* Heading and Subtext */}
+        <div className="text-center mt-4 mb-6">
+          <h2 className="text-2xl font-bold text-orange-600 mb-2">
+            What’s Next in Your Career?
+          </h2>
+          <p className="text-gray-700 max-w-xl mx-auto">
+            Tap on any bubble to explore available degrees, diplomas, and certifications you can pursue based on your background.
+          </p>
+        </div>
+
+        {/* Bubble Diagram */}
+        <div className="relative w-full h-[600px] flex items-center justify-center">
+          <svg className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            {this.state.paths.map((_, i) => {
+              const angle = (2 * Math.PI * i) / total;
+              const x = centerX + radius * Math.cos(angle);
+              const y = centerY + radius * Math.sin(angle);
+              return (
+                <line
+                  key={i}
+                  x1={centerX}
+                  y1={centerY}
+                  x2={x}
+                  y2={y}
+                  stroke="#ccc"
+                  strokeWidth="2"
+                />
+              );
+            })}
+          </svg>
+
+          {/* Central Node */}
+          <div
+            className="absolute z-10 p-4 bg-orange-500 text-white font-bold rounded-full shadow-lg text-center"
+            style={{ left: centerX - 50, top: centerY - 50, width: 100, height: 100 }}
+          >
+            <div className="flex flex-col justify-center items-center h-full">
+              <div className="text-sm">12th</div>
+              <div className="text-xs font-normal">Science</div>
+            </div>
+          </div>
+
+          {/* Bubbles */}
+          {this.state.paths.map((path, i) => {
             const angle = (2 * Math.PI * i) / total;
             const x = centerX + radius * Math.cos(angle);
             const y = centerY + radius * Math.sin(angle);
+            const isExpanded = this.state.expandedIndex === i;
+            const size = isExpanded ? expandedRadius * 2 : defaultRadius * 2;
+            const offset = size / 2;
+
             return (
-              <line
+              <div
                 key={i}
-                x1={centerX}
-                y1={centerY}
-                x2={x}
-                y2={y}
-                stroke="#ccc"
-                strokeWidth="2"
-              />
+                className={`absolute transition-all duration-300 ease-in-out cursor-pointer shadow-md ${
+                  isExpanded ? "z-20" : "z-10"
+                }`}
+                style={{
+                  top: y - offset,
+                  left: x - offset,
+                  width: size,
+                  height: size,
+                  borderRadius: "9999px",
+                  backgroundColor: "#fff",
+                  border: "1px solid #eee",
+                }}
+                onClick={() => this.handleCircleClick(i)}
+              >
+                <div className="flex flex-col items-center justify-center h-full p-2 text-center overflow-hidden">
+                  {this.renderIcon(path.icon, path.color)}
+                  <span className="text-[10px] font-semibold text-gray-700">{path.name}</span>
+                  {isExpanded && (
+                    <div className="mt-2 text-[10px] text-gray-600 space-y-1 max-w-[110px] max-h-[100px] overflow-y-auto scrollbar-thin scrollbar-thumb-orange-300 scrollbar-track-orange-100">
+                      {path.options.map((opt, idx) => (
+                        <div key={idx} className="bg-orange-100 px-2 py-1 rounded text-[10px]">
+                          {opt}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             );
           })}
-        </svg>
-
-        <div
-          className="absolute z-10 p-4 bg-orange-500 text-white font-bold rounded-full shadow-lg text-center"
-          style={{ left: centerX - 50, top: centerY - 50, width: 100, height: 100 }}
-        >
-          <div className="flex flex-col justify-center items-center h-full">
-            <div className="text-sm">12th</div>
-            <div className="text-xs font-normal">Science</div>
-          </div>
-        </div>
-
-        {this.state.paths.map((path, i) => {
-          const angle = (2 * Math.PI * i) / total;
-          const x = centerX + radius * Math.cos(angle);
-          const y = centerY + radius * Math.sin(angle);
-          const isExpanded = this.state.expandedIndex === i;
-          const size = isExpanded ? expandedRadius * 2 : defaultRadius * 2;
-          const offset = size / 2;
-
-          return (
-            <div
-              key={i}
-              className={`absolute transition-all duration-300 ease-in-out cursor-pointer shadow-md ${
-                isExpanded ? "z-20" : "z-10"
-              }`}
-              style={{
-                top: y - offset,
-                left: x - offset,
-                width: size,
-                height: size,
-                borderRadius: "9999px",
-                backgroundColor: "#fff",
-                border: "1px solid #eee",
-              }}
-              onClick={() => this.handleCircleClick(i)}
-            >
-              <div className="flex flex-col items-center justify-center h-full p-2 text-center">
-                {this.renderIcon(path.icon, path.color)}
-                <span className="text-[10px] font-semibold text-gray-700">{path.name}</span>
-                {isExpanded && (
-                  <div className="mt-2 text-[10px] text-gray-600 space-y-1 max-w-[110px] overflow-y-auto">
-                    {path.options.map((opt, idx) => (
-                      <div key={idx} className="bg-orange-100 px-2 py-1 rounded text-[10px]">
-                        {opt}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          );
-        })}
-
-        <div className="absolute bottom-6 w-full text-center text-sm text-gray-500">
-          Click a bubble to explore your career path.
         </div>
       </div>
     );
