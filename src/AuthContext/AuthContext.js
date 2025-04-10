@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AuthContext } from './AuthContextContext';
-import Loader from '../Loader'
+import Loader from '../Loader';
 
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(() => localStorage.getItem("access_token"));

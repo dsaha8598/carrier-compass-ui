@@ -6,6 +6,7 @@ import SkillSuggestion from "./SkillSuggestion";
 import JobOverview from "./JobOverview";
 import ROUTER_URLS from "../Constants/RouterUrls";
 import { NavLink } from "react-router-dom";
+import JobListings from "./JobListings";
 
 export default class Dashboard extends Component {
   render() {
@@ -88,6 +89,7 @@ export default class Dashboard extends Component {
             {/* Job Overview */}
             <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
               <JobOverview />
+
             </div>
           </div>
         </div>

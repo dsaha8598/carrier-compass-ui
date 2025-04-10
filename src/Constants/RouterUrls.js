@@ -9,7 +9,10 @@ const ROUTER_URLS = {
     VERIFY_OTP_URL: "/cart",
     UPDATE_PASSWORD_URL: "/update/password",
     QUIZ_URL: "/home/quiz",
-    APP_URL: "/home/quiz"
+    APP_URL: "/home/quiz",
+    JOB_OPENINGS_URL: "/home/jobopenings",
+    RESOURCE_URL: "/home/resource",
+    VLOGS_URL: "/home/vlogs"
   };
 
   

@@ -13,7 +13,9 @@ import PasswordUpdateNavigate from './UpdatePassword';
 import { AuthProvider } from './AuthContext/AuthContext';
 import PrivateRoute from './AuthContext/PrivateRoute';
 import Quiz from './AfterLoggedInComponents/QuizComponent';
-
+import JobListings from './AfterLoggedInComponents/JobListings';
+import PreparationResources from './AfterLoggedInComponents/PreparationResources';
+import CareerResources from './AfterLoggedInComponents/CareerResources';
 function App() {
   return (
     <React.StrictMode>
@@ -52,6 +54,31 @@ function App() {
                 element={
                   <PrivateRoute>
                    <Quiz />
+                  </PrivateRoute>
+                }
+              />
+            
+            <Route
+                path='jobopenings'
+                element={
+                  <PrivateRoute>
+                   <JobListings />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='resource'
+                element={
+                  <PrivateRoute>
+                   <PreparationResources />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='vlogs'
+                element={
+                  <PrivateRoute>
+                   <CareerResources />
                   </PrivateRoute>
                 }
               />

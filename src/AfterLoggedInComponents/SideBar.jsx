@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import ROUTER_URLS from "../Constants/RouterUrls";
 import { useNavigate } from "react-router-dom";
 import { withAuth } from "../AuthContext/withAuth";
-import QuizApp from "./QuizComponent";
+
 
 // Utility to use `navigate` inside class component
 function withRouter(Component) {
@@ -77,6 +77,51 @@ function withRouter(Component) {
                                     >
                                         <i className="fas fa-briefcase mr-3"></i>
                                         Quiz
+                                    </NavLink>
+                                </li>
+                                <li className="mb-2">
+                                    <NavLink
+                                        to={ROUTER_URLS.JOB_OPENINGS_URL}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
+                                                isActive
+                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
+                                                    : "text-gray-600 hover:bg-orange-50"
+                                            }`
+                                        }
+                                    >
+                                        <i className="fas fa-briefcase mr-3"></i>
+                                        Job Openings
+                                    </NavLink>
+                                </li>
+                                <li className="mb-2">
+                                    <NavLink
+                                        to={ROUTER_URLS.RESOURCE_URL}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
+                                                isActive
+                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
+                                                    : "text-gray-600 hover:bg-orange-50"
+                                            }`
+                                        }
+                                    >
+                                        <i className="fas fa-briefcase mr-3"></i>
+                                        Preparation Resources
+                                    </NavLink>
+                                </li>
+                                <li className="mb-2">
+                                    <NavLink
+                                        to={ROUTER_URLS.VLOGS_URL}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
+                                                isActive
+                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
+                                                    : "text-gray-600 hover:bg-orange-50"
+                                            }`
+                                        }
+                                    >
+                                        <i className="fas fa-briefcase mr-3"></i>
+                                        Career News & Blogs
                                     </NavLink>
                                 </li>
                                 <li className="mb-2">
