@@ -20,21 +20,25 @@ class SignUp extends Component {
       email: "",
       phone: "",
       gender: "",
+      dateOfBirth: "",
       password: "",
       confirmPassword: "",
+      acceptTerms: false,
       errors: {},
       loading: false,
-      error: null
+      error: null,
+      showTermsPage: false, // Add state to handle showing the Terms and Conditions page
     };
   }
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    const { name, value, type, checked } = e.target;
+    this.setState({ [name]: type === "checkbox" ? checked : value });
   };
 
   validate = () => {
     const errors = {};
-    const { name, email, phone, gender, password, confirmPassword } = this.state;
+    const { name, email, phone, gender, dateOfBirth, password, confirmPassword, acceptTerms } = this.state;
 
     if (!name.trim()) errors.name = "Name is required";
     if (!email.trim()) {
@@ -50,9 +54,18 @@ class SignUp extends Component {
     }
 
     if (!gender.trim()) errors.gender = "Gender is required";
+
+    if (!dateOfBirth) {
+      errors.dateOfBirth = "Date of Birth is required";
+    } else if (new Date(dateOfBirth) > new Date()) {
+      errors.dateOfBirth = "Date of Birth cannot be a future date";
+    }
+
     if (!password) errors.password = "Password is required";
     if (password && password.length < 6) errors.password = "Minimum 6 characters required";
     if (confirmPassword !== password) errors.confirmPassword = "Passwords do not match";
+
+    if (!acceptTerms) errors.acceptTerms = "You must accept Terms and Conditions";
 
     this.setState({ errors });
     return Object.keys(errors).length === 0;
@@ -62,34 +75,25 @@ class SignUp extends Component {
     e.preventDefault();
     if (this.validate()) {
       this.setState({ loading: true, error: null });
-      const { name, email, phone, gender, password } = this.state;
+      const { name, email, phone, gender, dateOfBirth, password } = this.state;
       try {
         const response = await fetch("http://localhost:8181/careerCompass/user/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            name,
-            email,
-            phone,
-            gender,
-            password,
-          }),
+          body: JSON.stringify({ name, email, phone, gender, dateOfBirth, password }),
         });
 
-        if (!response.ok){ 
-          throw new Error("Password update failed.");
-        }
-        else{
-          const result = await response.json();
-          console.log("Server Response:", result);
-          this.setState({ loading: false, error: null });
-  
-          // Navigate to OTP page with email
-          this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp"} });
-        }
-        
+        if (!response.ok) { 
+          throw new Error("Registration failed.");
+        } 
+
+        const result = await response.json();
+        console.log("Server Response:", result);
+        this.setState({ loading: false, error: null });
+
+        this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
 
       } catch (error) {
         console.error("Registration failed:", error);
@@ -98,17 +102,41 @@ class SignUp extends Component {
     }
   };
 
+  handleTermsClick = () => {
+    this.setState({ showTermsPage: true });
+  };
+
+  closeTermsPage = () => {
+    this.setState({ showTermsPage: false });
+  };
+
   render() {
-    const { errors } = this.state;
+    const { errors, loading, showTermsPage, acceptTerms } = this.state;
+
+    // If showTermsPage is true, display the Terms and Conditions page
+    if (showTermsPage) {
+      return (
+        <div className="terms-page">
+          <h1>Terms and Conditions</h1>
+          <p>
+            These are the terms and conditions for using our service...
+            {/* Add your Terms and Conditions content here */}
+          </p>
+          <button onClick={this.closeTermsPage}>Close Terms and Conditions</button>
+        </div>
+      );
+    }
 
     return (
       <React.StrictMode>
-        {this.state.loading ? <Loader /> : this.signUpPageContent(errors)}
+        {loading ? <Loader /> : this.signUpPageContent(errors, acceptTerms)}
       </React.StrictMode>
     );
   }
 
-  signUpPageContent = (errors) => {
+  signUpPageContent = (errors, acceptTerms) => {
+    const today = new Date().toISOString().split('T')[0];
+
     return (
       <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100 overflow-auto">
         <header className="absolute top-4 left-4 flex items-center">
@@ -132,8 +160,9 @@ class SignUp extends Component {
 
           <div className="w-full md:w-1/2 mt-8 md:mt-0 md:ml-8">
             <h2 className="text-3xl font-bold mb-6">Create an account</h2>
-            <form onSubmit={this.handleSubmit}>
-              {[
+            <form onSubmit={this.handleSubmit} noValidate>
+              {/* Input Fields */}
+              {[ 
                 { name: "name", label: "Name", type: "text" },
                 { name: "email", label: "Email Address", type: "email" },
                 { name: "phone", label: "Phone Number", type: "text" },
@@ -149,7 +178,6 @@ class SignUp extends Component {
                     type={type}
                     value={this.state[name]}
                     onChange={this.handleChange}
-                    required
                   />
                   {errors[name] && (
                     <p className="text-sm text-red-500 mt-1">{errors[name]}</p>
@@ -157,6 +185,24 @@ class SignUp extends Component {
                 </div>
               ))}
 
+              {/* Date of Birth */}
+              <div className="mb-4">
+                <label className="block text-gray-700" htmlFor="dateOfBirth">Date of Birth</label>
+                <input
+                  className={`w-full p-3 border rounded-lg mt-1 ${errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'}`}
+                  id="dateOfBirth"
+                  name="dateOfBirth"
+                  type="date"
+                  max={today}
+                  value={this.state.dateOfBirth}
+                  onChange={this.handleChange}
+                />
+                {errors.dateOfBirth && (
+                  <p className="text-sm text-red-500 mt-1">{errors.dateOfBirth}</p>
+                )}
+              </div>
+
+              {/* Gender */}
               <div className="mb-4">
                 <label className="block text-gray-700" htmlFor="gender">Gender</label>
                 <select
@@ -165,7 +211,6 @@ class SignUp extends Component {
                   className={`w-full p-3 border rounded-lg mt-1 ${errors.gender ? 'border-red-500' : 'border-gray-300'}`}
                   value={this.state.gender}
                   onChange={this.handleChange}
-                  required
                 >
                   <option value="">-- Select Gender --</option>
                   <option value="Male">Male</option>
@@ -177,28 +222,41 @@ class SignUp extends Component {
                 )}
               </div>
 
+              {/* Terms and Conditions */}
+              <div className="flex items-start mb-4">
+                <input
+                  id="acceptTerms"
+                  name="acceptTerms"
+                  type="checkbox"
+                  className="mr-2 mt-1"
+                  checked={acceptTerms}
+                  onChange={this.handleChange}
+                />
+                <label className="text-gray-600 text-sm" htmlFor="acceptTerms">
+                  By registering, you agree to our{" "}
+                  <a className="text-orange-500" href="#/" onClick={this.handleTermsClick}>Terms & Conditions</a> and{" "}
+                  <a className="text-orange-500" href="#/terms">Privacy Policy</a>.
+                </label>
+              </div>
+              {errors.acceptTerms && (
+                <p className="text-sm text-red-500 mb-4">{errors.acceptTerms}</p>
+              )}
+
+              {/* Submit Button */}
               <div className="flex items-center justify-between mb-6">
                 <button
-                  className="bg-orange-600 text-white py-3 px-6 rounded-lg font-bold"
+                  className="bg-orange-600 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-700 transition-colors"
                   type="submit"
                 >
                   REGISTER
                 </button>
               </div>
-
-              <div className="flex items-center mb-6">
-                <input className="mr-2" id="terms" type="checkbox" required />
-                <label className="text-gray-600 text-sm" htmlFor="terms">
-                  By registering your details, you agree with our{" "}
-                  <a className="text-orange-500" href="#">Terms & Conditions</a>, and{" "}
-                  <a className="text-orange-500" href="#">Privacy and Cookie Policy</a>.
-                </label>
-              </div>
             </form>
 
+            {/* Sign In Link */}
             <div className="mt-6 text-center">
-              <p className="text-gray-700">Already have an account with us?</p>
-              <a className="text-orange-600 font-bold mt-2" href={"/#"+ROUTER_URLS.LOGIN_URL}>
+              <p className="text-gray-700">Already have an account?</p>
+              <a className="text-orange-600 font-bold mt-2 inline-block" href={"/#" + ROUTER_URLS.LOGIN_URL}>
                 SIGN IN
               </a>
             </div>

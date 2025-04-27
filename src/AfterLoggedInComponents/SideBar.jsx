@@ -66,6 +66,21 @@ function withRouter(Component) {
                                 </li>
                                 <li className="mb-2">
                                     <NavLink
+                                        to={ROUTER_URLS.JOB_OVERVIEW_URL}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
+                                                isActive
+                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
+                                                    : "text-gray-600 hover:bg-orange-50"
+                                            }`
+                                        }
+                                    >
+                                        <i className="fas fa-briefcase mr-3"></i>
+                                        Eligible Jobs
+                                    </NavLink>
+                                </li>
+                                <li className="mb-2">
+                                    <NavLink
                                         to={ROUTER_URLS.QUIZ_URL}
                                         className={({ isActive }) =>
                                             `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${

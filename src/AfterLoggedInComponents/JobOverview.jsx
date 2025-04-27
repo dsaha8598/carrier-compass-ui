@@ -1,204 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-
-const jobData = [
-  {
-    company: "MetaMask",
-    title: "Product designer",
-    applicants: "25 Applicants",
-    tags: ["Entry Level", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Doing the right thing for investors is what we're all about at Vanguard, and that in...",
-    rate: "$250/hr",
-    posted: "Posted 12 days ago",
-    logo: "https://placehold.co/40x40",
-    sector: "Private",
-    qualifications: "Bachelor's degree in Design or related field",
-    skills: ["Figma", "User Research", "Prototyping"],
-    salary: "$80,000 - $100,000 per year",
-    ageRequirement: "21 - 35 years",
-    image: "https://placehold.co/600x300"
-  },
-  {
-    company: "Netflix",
-    title: "Sr. UX Designer",
-    applicants: "14 Applicants",
-    tags: ["Expert", "Part-Time", "Remote"],
-    tagColors: ["purple", "yellow", "red"],
-    description: "Netflix is one of the world's leading streaming entertainment service with o...",
-    rate: "$195/hr",
-    posted: "Posted 5 days ago",
-    logo: "https://placehold.co/40x40",
-    sector: "Private",
-    qualifications: "Master's in Human Computer Interaction or related",
-    skills: ["UX Strategy", "A/B Testing", "Wireframing"],
-    salary: "$120,000/year",
-    ageRequirement: "25 - 40 years",
-    image: "https://placehold.co/600x300"
-  },
-  {
-    company: "MetaMask",
-    title: "Product designer",
-    applicants: "25 Applicants",
-    tags: ["Entry Level", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Doing the right thing for investors is what we're all about...",
-    fullDescription: "Doing the right thing for investors is what we're all about at Vanguard. As a product designer, you will be responsible for...",
-    rate: "$250/hr",
-    posted: "Posted 12 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Private",
-    qualification: "Bachelor's in Design or related field",
-    skills: ["UI/UX", "Figma", "Prototyping"],
-    age: "21-35 years"
-  },
-  {
-    company: "Govt. of India",
-    title: "Junior Clerk",
-    applicants: "103 Applicants",
-    tags: ["Fresher", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Central Government clerical recruitment...",
-    fullDescription: "This is a permanent government clerical post under central administration. Includes pension, housing allowance, etc.",
-    rate: "₹25,000/month",
-    posted: "Posted 7 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Government",
-    qualification: "12th Pass",
-    skills: ["Typing", "Basic Computer Knowledge"],
-    age: "18-28 years"
-  },
-  {
-    company: "MetaMask",
-    title: "Product designer",
-    applicants: "25 Applicants",
-    tags: ["Entry Level", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Doing the right thing for investors is what we're all about...",
-    fullDescription: "Doing the right thing for investors is what we're all about at Vanguard. As a product designer, you will be responsible for...",
-    rate: "$250/hr",
-    posted: "Posted 12 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Private",
-    qualification: "Bachelor's in Design or related field",
-    skills: ["UI/UX", "Figma", "Prototyping"],
-    age: "21-35 years"
-  },
-  {
-    company: "Govt. of India",
-    title: "Junior Clerk",
-    applicants: "103 Applicants",
-    tags: ["Fresher", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Central Government clerical recruitment...",
-    fullDescription: "This is a permanent government clerical post under central administration. Includes pension, housing allowance, etc.",
-    rate: "₹25,000/month",
-    posted: "Posted 7 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Government",
-    qualification: "12th Pass",
-    skills: ["Typing", "Basic Computer Knowledge"],
-    age: "18-28 years"
-  },
-  {
-    company: "MetaMask",
-    title: "Product designer",
-    applicants: "25 Applicants",
-    tags: ["Entry Level", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Doing the right thing for investors is what we're all about at Vanguard, and that in...",
-    rate: "$250/hr",
-    posted: "Posted 12 days ago",
-    logo: "https://placehold.co/40x40",
-    sector: "Private",
-    qualifications: "Bachelor's degree in Design or related field",
-    skills: ["Figma", "User Research", "Prototyping"],
-    salary: "$80,000 - $100,000 per year",
-    ageRequirement: "21 - 35 years",
-    image: "https://placehold.co/600x300"
-  },
-  {
-    company: "Netflix",
-    title: "Sr. UX Designer",
-    applicants: "14 Applicants",
-    tags: ["Expert", "Part-Time", "Remote"],
-    tagColors: ["purple", "yellow", "red"],
-    description: "Netflix is one of the world's leading streaming entertainment service with o...",
-    rate: "$195/hr",
-    posted: "Posted 5 days ago",
-    logo: "https://placehold.co/40x40",
-    sector: "Private",
-    qualifications: "Master's in Human Computer Interaction or related",
-    skills: ["UX Strategy", "A/B Testing", "Wireframing"],
-    salary: "$120,000/year",
-    ageRequirement: "25 - 40 years",
-    image: "https://placehold.co/600x300"
-  },
-  {
-    company: "MetaMask",
-    title: "Product designer",
-    applicants: "25 Applicants",
-    tags: ["Entry Level", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Doing the right thing for investors is what we're all about...",
-    fullDescription: "Doing the right thing for investors is what we're all about at Vanguard. As a product designer, you will be responsible for...",
-    rate: "$250/hr",
-    posted: "Posted 12 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Government",
-    qualification: "Bachelor's in Design or related field",
-    skills: ["UI/UX", "Figma", "Prototyping"],
-    age: "21-35 years"
-  },
-  {
-    company: "Govt. of India",
-    title: "Junior Clerk",
-    applicants: "103 Applicants",
-    tags: ["Fresher", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Central Government clerical recruitment...",
-    fullDescription: "This is a permanent government clerical post under central administration. Includes pension, housing allowance, etc.",
-    rate: "₹25,000/month",
-    posted: "Posted 7 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Government",
-    qualification: "12th Pass",
-    skills: ["Typing", "Basic Computer Knowledge"],
-    age: "18-28 years"
-  },
-  {
-    company: "MetaMask",
-    title: "Product designer",
-    applicants: "25 Applicants",
-    tags: ["Entry Level", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Doing the right thing for investors is what we're all about...",
-    fullDescription: "Doing the right thing for investors is what we're all about at Vanguard. As a product designer, you will be responsible for...",
-    rate: "$250/hr",
-    posted: "Posted 12 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Government",
-    qualification: "Bachelor's in Design or related field",
-    skills: ["UI/UX", "Figma", "Prototyping"],
-    age: "21-35 years"
-  },
-  {
-    company: "Govt. of India",
-    title: "Junior Clerk",
-    applicants: "103 Applicants",
-    tags: ["Fresher", "Full-Time"],
-    tagColors: ["purple", "green"],
-    description: "Central Government clerical recruitment...",
-    fullDescription: "This is a permanent government clerical post under central administration. Includes pension, housing allowance, etc.",
-    rate: "₹25,000/month",
-    posted: "Posted 7 days ago",
-    logo: "https://placehold.co/100x100",
-    sector: "Government",
-    qualification: "12th Pass",
-    skills: ["Typing", "Basic Computer Knowledge"],
-    age: "18-28 years"
-  }
-];
+import { AuthContext } from '../AuthContext/AuthContextContext';
 
 const tagColorMap = {
   purple: "bg-purple-100 text-purple-800",
@@ -296,8 +98,81 @@ const ScrollableJobSection = ({ title, jobs, onJobClick }) => {
 
 const JobOverview = () => {
   const [selectedJob, setSelectedJob] = useState(null);
+  const [jobData, setJobData] = useState([]);
+  const [selectedQualification, setSelectedQualification] = useState('');
+  const { user } = useContext(AuthContext);
+  
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+
+    const fetchJobData = async (qualification) => {
+      try {
+        const response = await fetch(`http://localhost:8181/careerCompass/job/jobs/${qualification}`, {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch job data");
+        }
+
+        const data = await response.json();
+        setJobData(data); // Update jobData with API response
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // Fetch job data when the component loads or qualification is selected
+    if (selectedQualification) {
+      fetchJobData(selectedQualification);
+    }
+
+  }, [selectedQualification, user.email]); // Add qualification as a dependency
+
   return (
     <div className="bg-white-600 py-10 relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-600 mb-2">
+            Great news, <span className="text-orange-600"> {user.name}! 🎉</span>
+          </h2>
+          <p className="text-gray-700">
+            Based on your highest qualification and the skills you’ve added, we’ve handpicked
+            some job opportunities just for you. Scroll through and explore both government and
+            private sector roles tailored to your profile.
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/3596/3596094.png"
+            alt="Job search illustration"
+            className="w-32 h-32 object-contain"
+          />
+        </div>
+      </div>
+
+      <div className="mb-6 px-6">
+        <label htmlFor="qualification" className="block text-gray-700 mb-2">
+          Select Qualification
+        </label>
+        <select
+          id="qualification"
+          className="border border-gray-300 rounded-md p-2 w-full"
+          value={selectedQualification}
+          onChange={(e) => setSelectedQualification(e.target.value)}
+        >
+          {user.qualifications?.map((qualification, index) => (
+            <option key={index} value={qualification}>
+              {qualification}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <ScrollableJobSection title="Private Sector Jobs" jobs={jobData.filter(j => j.sector === "Private")} onJobClick={setSelectedJob} />
       <ScrollableJobSection title="Government Sector Jobs" jobs={jobData.filter(j => j.sector === "Government")} onJobClick={setSelectedJob} />
       {selectedJob && <JobModal job={selectedJob} onClose={() => setSelectedJob(null)} />}

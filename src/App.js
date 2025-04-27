@@ -17,6 +17,8 @@ import JobListings from './AfterLoggedInComponents/JobListings';
 import PreparationResources from './AfterLoggedInComponents/PreparationResources';
 import CareerResources from './AfterLoggedInComponents/CareerResources';
 import Test from './Test';
+import TermsAndPrivacyModal from './TermsAndPrivacyModal';
+import JobOverview from './AfterLoggedInComponents/JobOverview';
 function App() {
   return (
     <React.StrictMode>
@@ -31,6 +33,7 @@ function App() {
           <Route path='/verify/otp' element={<OtpValidationNavigate />} />
           <Route path='/update/password' element={<PasswordUpdateNavigate />} />
           <Route path='/test' element={<Test />} />
+          <Route path='/terms' element={<TermsAndPrivacyModal />} />
 
          
           {/* Protected Routes inside Layout */}
@@ -81,6 +84,14 @@ function App() {
                 element={
                   <PrivateRoute>
                    <CareerResources />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='joboverview'
+                element={
+                  <PrivateRoute>
+                   <JobOverview />
                   </PrivateRoute>
                 }
               />

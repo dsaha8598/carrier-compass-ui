@@ -12,7 +12,9 @@ const ROUTER_URLS = {
     APP_URL: "/home/quiz",
     JOB_OPENINGS_URL: "/home/jobopenings",
     RESOURCE_URL: "/home/resource",
-    VLOGS_URL: "/home/vlogs"
+    VLOGS_URL: "/home/vlogs",
+    TERMS_URL: "/terms",
+    JOB_OVERVIEW_URL: "/home/joboverview"
   };
 
   
