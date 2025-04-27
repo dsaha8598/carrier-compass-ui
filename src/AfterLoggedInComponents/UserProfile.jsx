@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { PlusCircle, X } from "lucide-react";
 import { AuthContext } from "../AuthContext/AuthContextContext";
+import ROUTER_URLS from "../Constants/RouterUrls";
 
 export const UserProfile = () => {
   const {user}  = useContext(AuthContext);
@@ -40,7 +41,7 @@ export const UserProfile = () => {
 
   const fetchQualificationOptions = async () => {
     try {
-      const response = await fetch("http://localhost:8181/careerCompass/profile/getAll", {
+      const response = await fetch(ROUTER_URLS.SERVER_URL+"/profile/getAll", {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -87,7 +88,7 @@ export const UserProfile = () => {
     if (!newSkill) return;
 
     try {
-      const response = await fetch(`http://localhost:8181/careerCompass/profile/addSkill?skill=${newSkill}&email=${email}`, {
+      const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/addSkill?skill=${newSkill}&email=${email}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +111,7 @@ export const UserProfile = () => {
 
   const handleSkillDelete = async (skillToDelete) => {
     try {
-      const response = await fetch(`http://localhost:8181/careerCompass/profile/removeSkill?skill=${skillToDelete}&email=${email}`, {
+      const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/removeSkill?skill=${skillToDelete}&email=${email}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${authToken}`,
@@ -145,7 +146,7 @@ export const UserProfile = () => {
     if (!newQualification) return;
 
     try {
-      const response = await fetch(`http://localhost:8181/careerCompass/profile/addQualification?qualification=${newQualification}&email=${email}`, {
+      const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/addQualification?qualification=${newQualification}&email=${email}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -168,7 +169,7 @@ export const UserProfile = () => {
 
   const handleQualificationDelete = async (qualificationToDelete) => {
     try {
-      const response = await fetch(`http://localhost:8181/careerCompass/profile/removeQualification?qualification=${qualificationToDelete}&email=${email}`, {
+      const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/removeQualification?qualification=${qualificationToDelete}&email=${email}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${authToken}`,

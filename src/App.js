@@ -19,6 +19,7 @@ import CareerResources from './AfterLoggedInComponents/CareerResources';
 import Test from './Test';
 import TermsAndPrivacyModal from './TermsAndPrivacyModal';
 import JobOverview from './AfterLoggedInComponents/JobOverview';
+import ChatSupport from './AfterLoggedInComponents/ChatSupport ';
 function App() {
   return (
     <React.StrictMode>
@@ -92,6 +93,14 @@ function App() {
                 element={
                   <PrivateRoute>
                    <JobOverview />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path='chat'
+                element={
+                  <PrivateRoute>
+                   <ChatSupport />
                   </PrivateRoute>
                 }
               />

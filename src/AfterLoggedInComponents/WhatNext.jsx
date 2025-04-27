@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { GraduationCap, Stethoscope, Settings, Pill } from "lucide-react";
 import { withAuth } from "../AuthContext/withAuth";
+import ROUTER_URLS from "../Constants/RouterUrls";
 
 const iconMap = {
   GraduationCap,
@@ -24,7 +25,7 @@ const WhatNext = ({ qualification }) => {
     const fetchPaths = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8181/careerCompass/profile/qualification/${qualification}`
+          `${ROUTER_URLS.SERVER_URL}/profile/qualification/${qualification}`
         );
         const data = await response.json();
         setPaths(data); // Set the fetched data to state

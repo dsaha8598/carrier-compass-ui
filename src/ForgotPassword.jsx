@@ -103,7 +103,7 @@ import Loader from "./Loader";
 
          try {
          // Make GET API request
-         const response = await fetch(`http://localhost:8181/careerCompass/user/send/otp?email=${this.state.email}&pageSource=forgotPassword`);
+         const response = await fetch(`${ROUTER_URLS.SERVER_URL}/user/send/otp?email=${this.state.email}&pageSource=forgotPassword`);
             
          if (!response.ok) {
              throw new Error("Failed to send OTP, Please Retry");

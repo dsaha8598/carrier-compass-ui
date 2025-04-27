@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AuthContext } from './AuthContextContext';
 import Loader from '../Loader';
+import ROUTER_URLS from '../Constants/RouterUrls';
 
 export const AuthProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(() => localStorage.getItem("access_token"));
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({ qualifications: [] });
   const [loading, setLoading] = useState(true);
   const isFirstTimeUser = useRef(false); // ✅ useRef so it persists across renders but doesn't trigger re-render
 
@@ -15,7 +16,7 @@ export const AuthProvider = ({ children }) => {
       if (authToken && !isFirstTimeUser.current) { // ✅ check .current
         
         try {
-          const res = await fetch("http://localhost:8181/careerCompass/user/details", {
+          const res = await fetch(ROUTER_URLS.SERVER_URL+"/user/details", {
             headers: { Authorization: `Bearer ${authToken}` },
           });
 
@@ -37,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     if (authToken) {
       interval = setInterval(async () => {
         try {
-          const res = await fetch("http://localhost:8181/careerCompass/user/details", {
+          const res = await fetch(ROUTER_URLS.SERVER_URL+"/user/details", {
             headers: { Authorization: `Bearer ${authToken}` },
           });
 
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }) => {
   }, [authToken]);
 
   const login = async (email, password) => {
-    const res = await fetch("http://localhost:8181/careerCompass/user/login", {
+    const res = await fetch(ROUTER_URLS.SERVER_URL + "/user/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -70,6 +71,7 @@ export const AuthProvider = ({ children }) => {
       const data = await res.json();
       localStorage.setItem("access_token", data.token);
       setAuthToken(data.token);
+      setUser(data);
       return true;
     }
 

@@ -77,7 +77,7 @@ class SignUp extends Component {
       this.setState({ loading: true, error: null });
       const { name, email, phone, gender, dateOfBirth, password } = this.state;
       try {
-        const response = await fetch("http://localhost:8181/careerCompass/user/register", {
+        const response = await fetch(ROUTER_URLS.SERVER_URL+"/user/register", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { AuthContext } from '../AuthContext/AuthContextContext';
+import ROUTER_URLS from '../Constants/RouterUrls';
 
 const tagColorMap = {
   purple: "bg-purple-100 text-purple-800",
@@ -107,7 +108,7 @@ const JobOverview = () => {
 
     const fetchJobData = async (qualification) => {
       try {
-        const response = await fetch(`http://localhost:8181/careerCompass/job/jobs/${qualification}`, {
+        const response = await fetch(`${ROUTER_URLS.SERVER_URL}/job/jobs/${qualification}`, {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}`,

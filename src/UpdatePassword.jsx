@@ -56,7 +56,7 @@ class PasswordUpdate extends Component {
         this.setState({ loading: true });
 
         try {
-            const response = await fetch(`http://localhost:8181/careerCompass/user/update/password?email=${email}&password=${newPassword}`, {
+            const response = await fetch(`${ROUTER_URLS.SERVER_URL}/user/update/password?email=${email}&password=${newPassword}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" }
             });

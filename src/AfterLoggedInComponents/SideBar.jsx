@@ -81,21 +81,6 @@ function withRouter(Component) {
                                 </li>
                                 <li className="mb-2">
                                     <NavLink
-                                        to={ROUTER_URLS.QUIZ_URL}
-                                        className={({ isActive }) =>
-                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
-                                                isActive
-                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
-                                                    : "text-gray-600 hover:bg-orange-50"
-                                            }`
-                                        }
-                                    >
-                                        <i className="fas fa-briefcase mr-3"></i>
-                                        Quiz
-                                    </NavLink>
-                                </li>
-                                <li className="mb-2">
-                                    <NavLink
                                         to={ROUTER_URLS.JOB_OPENINGS_URL}
                                         className={({ isActive }) =>
                                             `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
@@ -109,6 +94,8 @@ function withRouter(Component) {
                                         Job Openings
                                     </NavLink>
                                 </li>
+                                
+                                
                                 <li className="mb-2">
                                     <NavLink
                                         to={ROUTER_URLS.RESOURCE_URL}
@@ -140,35 +127,36 @@ function withRouter(Component) {
                                     </NavLink>
                                 </li>
                                 <li className="mb-2">
-                                    <a className="flex items-center px-4 py-2 text-gray-600 hover:bg-orange-50 rounded-l-full">
-                                        <i className="fas fa-blog mr-3"></i>
-                                        Career News & Blogs
-                                    </a>
+                                    <NavLink
+                                        to={ROUTER_URLS.QUIZ_URL}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
+                                                isActive
+                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
+                                                    : "text-gray-600 hover:bg-orange-50"
+                                            }`
+                                        }
+                                    >
+                                        <i className="fas fa-briefcase mr-3"></i>
+                                        Quiz
+                                    </NavLink>
                                 </li>
                                 <li className="mb-2">
-                                    <a className="flex items-center px-4 py-2 text-gray-600 hover:bg-orange-50 rounded-l-full">
-                                        <i className="fas fa-lightbulb mr-3"></i>
-                                        Skill Hub
-                                    </a>
-                                </li>
-                                <li className="mb-2">
-                                    <a className="flex items-center px-4 py-2 text-gray-600 hover:bg-orange-50 rounded-l-full">
-                                        <i className="fas fa-chart-line mr-3"></i>
-                                        Preparation Resources
-                                    </a>
-                                </li>
-                                <li className="mb-2">
-                                    <a className="flex items-center px-4 py-2 text-gray-600 hover:bg-orange-50 rounded-l-full">
-                                        <i className="fas fa-cog mr-3"></i>
-                                        Setting
-                                    </a>
-                                </li>
-                                <li className="mb-2">
-                                    <a className="flex items-center px-4 py-2 text-gray-600 hover:bg-orange-50 rounded-l-full">
-                                        <i className="fas fa-question-circle mr-3"></i>
+                                    <NavLink
+                                        to={ROUTER_URLS.CHAT_SUPPORT_URL}
+                                        className={({ isActive }) =>
+                                            `flex items-center px-4 py-2 rounded-l-full transition-all duration-300 ${
+                                                isActive
+                                                    ? "bg-orange-100 text-orange-600 font-semibold border-l-4 border-orange-500"
+                                                    : "text-gray-600 hover:bg-orange-50"
+                                            }`
+                                        }
+                                    >
+                                        <i className="fas fa-briefcase mr-3"></i>
                                         Help
-                                    </a>
+                                    </NavLink>
                                 </li>
+                                
                             </ul>
                         </nav>
                     </div>
