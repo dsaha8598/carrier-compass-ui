@@ -16,6 +16,7 @@ import Quiz from './AfterLoggedInComponents/QuizComponent';
 import JobListings from './AfterLoggedInComponents/JobListings';
 import PreparationResources from './AfterLoggedInComponents/PreparationResources';
 import CareerResources from './AfterLoggedInComponents/CareerResources';
+import Test from './Test';
 function App() {
   return (
     <React.StrictMode>
@@ -29,6 +30,7 @@ function App() {
           <Route path='/forgotPassword' element={<ForgotPasswordWithNavigate />} />
           <Route path='/verify/otp' element={<OtpValidationNavigate />} />
           <Route path='/update/password' element={<PasswordUpdateNavigate />} />
+          <Route path='/test' element={<Test />} />
 
          
           {/* Protected Routes inside Layout */}
