@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { PlusCircle, X } from "lucide-react";
 import { AuthContext } from "../AuthContext/AuthContextContext";
 import ROUTER_URLS from "../Constants/RouterUrls";
+import Loader from "../Loader";
 
 export const UserProfile = () => {
   const {user}  = useContext(AuthContext);
@@ -19,6 +20,7 @@ export const UserProfile = () => {
   const [qualificationOptions, setQualificationOptions] = useState([]);
   const [newQualification, setNewQualification] = useState("");
   const [qualificationDetails, setQualificationDetails] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -40,6 +42,7 @@ export const UserProfile = () => {
   }, []);
 
   const fetchQualificationOptions = async () => {
+    setLoading(true);
     try {
       const response = await fetch(ROUTER_URLS.SERVER_URL+"/profile/getAll", {
         headers: {
@@ -48,6 +51,7 @@ export const UserProfile = () => {
       });
       const data = await response.json();
       setQualificationOptions(data);
+      setLoading(false);
     } catch (error) {
       console.error("Failed to fetch qualification options", error);
     }
@@ -86,7 +90,7 @@ export const UserProfile = () => {
   const handleSkillAdd  = async () => {
     
     if (!newSkill) return;
-
+    setLoading(true);
     try {
       const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/addSkill?skill=${newSkill}&email=${email}`, {
         method: "POST",
@@ -106,11 +110,14 @@ export const UserProfile = () => {
       }
     } catch (err) {
       console.error("Failed to add skill", err);
+    }finally{
+      setLoading(false);
     }
   };
 
   const handleSkillDelete = async (skillToDelete) => {
     try {
+      setLoading(true);
       const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/removeSkill?skill=${skillToDelete}&email=${email}`, {
         method: "POST",
         headers: {
@@ -127,6 +134,8 @@ export const UserProfile = () => {
       }
     } catch (err) {
       console.error("Failed to remove skill", err);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -146,6 +155,7 @@ export const UserProfile = () => {
     if (!newQualification) return;
 
     try {
+      setLoading(true);
       const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/addQualification?qualification=${newQualification}&email=${email}`, {
         method: "POST",
         headers: {
@@ -164,11 +174,14 @@ export const UserProfile = () => {
       }
     } catch (err) {
       console.error("Failed to add qualification", err);
+    }finally{
+      setLoading(false);
     }
   };
 
   const handleQualificationDelete = async (qualificationToDelete) => {
     try {
+      setLoading(true);
       const response = await fetch(`${ROUTER_URLS.SERVER_URL}/profile/removeQualification?qualification=${qualificationToDelete}&email=${email}`, {
         method: "POST",
         headers: {
@@ -185,6 +198,8 @@ export const UserProfile = () => {
       }
     } catch (err) {
       console.error("Failed to remove qualification", err);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -245,8 +260,8 @@ export const UserProfile = () => {
   
   ;
 
-  return (
-    <div className="min-h-screen bg-gray-50 flex items-start justify-center py-10 px-4">
+  const  pageContebnt=()=>{
+    return (<div className="min-h-screen bg-gray-50 flex items-start justify-center py-10 px-4">
       <div className="bg-white rounded-3xl p-6 w-full max-w-2xl shadow-lg">
         {/* Profile Completion */}
         <div className="mb-6">
@@ -433,6 +448,11 @@ export const UserProfile = () => {
 
         
       </div>
-    </div>
-  );
+    </div>);
+  }
+
+  return (<React.StrictMode>{loading ? <Loader/> : pageContebnt()}</React.StrictMode>);
+  
+
+ 
 };

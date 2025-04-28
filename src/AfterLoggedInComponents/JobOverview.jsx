@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { AuthContext } from '../AuthContext/AuthContextContext';
 import ROUTER_URLS from '../Constants/RouterUrls';
+import Loader from '../Loader';
 
 const tagColorMap = {
   purple: "bg-purple-100 text-purple-800",
@@ -100,14 +101,17 @@ const ScrollableJobSection = ({ title, jobs, onJobClick }) => {
 const JobOverview = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [jobData, setJobData] = useState([]);
-  const [selectedQualification, setSelectedQualification] = useState('');
   const { user } = useContext(AuthContext);
-  
+  const [selectedQualification, setSelectedQualification] = useState('');
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    
     const token = localStorage.getItem("access_token");
 
     const fetchJobData = async (qualification) => {
       try {
+        setLoading(true);
         const response = await fetch(`${ROUTER_URLS.SERVER_URL}/job/jobs/${qualification}`, {
           method: 'GET',
           headers: {
@@ -124,18 +128,21 @@ const JobOverview = () => {
         setJobData(data); // Update jobData with API response
       } catch (error) {
         console.error(error);
+      }finally{
+        setLoading(false);
       }
     };
 
     // Fetch job data when the component loads or qualification is selected
+    setSelectedQualification(selectedQualification ? selectedQualification : user.qualifications[0])
     if (selectedQualification) {
       fetchJobData(selectedQualification);
     }
 
   }, [selectedQualification, user.email]); // Add qualification as a dependency
 
-  return (
-    <div className="bg-white-600 py-10 relative">
+  const pageContent=()=>{
+    return (<div className="bg-white-600 py-10 relative">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
         <div>
           <h2 className="text-2xl font-bold text-gray-600 mb-2">
@@ -177,7 +184,13 @@ const JobOverview = () => {
       <ScrollableJobSection title="Private Sector Jobs" jobs={jobData.filter(j => j.sector === "Private")} onJobClick={setSelectedJob} />
       <ScrollableJobSection title="Government Sector Jobs" jobs={jobData.filter(j => j.sector === "Government")} onJobClick={setSelectedJob} />
       {selectedJob && <JobModal job={selectedJob} onClose={() => setSelectedJob(null)} />}
-    </div>
+    </div>);
+  }
+
+  return (
+    <React.StrictMode>
+      {loading ? <Loader/> : pageContent()}
+    </React.StrictMode>
   );
 };
 

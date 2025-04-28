@@ -31,7 +31,7 @@ class OtpValidation extends Component {
     }
 
     startTimer = () => {
-        this.setState({ timer: 10, isResendDisabled: true });
+        this.setState({ timer: 120, isResendDisabled: true });
 
         this.interval = setInterval(() => {
             this.setState((prevState) => {
@@ -157,17 +157,18 @@ class OtpValidation extends Component {
         const { otp, loading, isResendDisabled } = this.state;
 
         return (
-            <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100">
+            <React.StrictMode>
+           {/* Loader */}
+           {loading ? (
+                    <Loader></Loader>
+                ) : ( <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100">
                 {/* Header */}
                 <header className="absolute top-4 left-4 flex items-center">
                     <img alt="Compass Logo" className="h-10 w-10" src={Logo} />
                     <h1 className="text-2xl font-bold ml-3 text-orange-500">CareerCompass</h1>
                 </header>
 
-                {/* Loader */}
-                {loading ? (
-                    <Loader></Loader>
-                ) : (
+                
                     <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
                         <div className="bg-white p-6 rounded-lg shadow-md w-full md:w-80">
                             {/* OTP Banner */}
@@ -234,8 +235,9 @@ class OtpValidation extends Component {
                             </div>
                         </div>
                     </div>
-                )}
-            </div>
+               
+            </div> )}
+            </React.StrictMode>
         );
     }
 }

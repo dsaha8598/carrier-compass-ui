@@ -12,10 +12,13 @@ import Loader from "./Loader";
         this.onClickSubmit = this.onClickSubmit.bind(this);
     }
 
+    
+
     render() {
         return (
             <React.StrictMode>
-                <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100">
+              {this.state.loading ? ( <Loader/>) 
+                    : (  <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100">
                     <header className="absolute top-4 left-4 flex items-center">
                         <img
                             alt="Compass Logo"
@@ -29,9 +32,8 @@ import Loader from "./Loader";
                         </h1>
                     </header>
 
-                    {/** if loading is true then ui will display a loading page otherwise it will display forgot password page*/}
-                    {this.state.loading ? ( <Loader/>) 
-                    : (
+                   
+                    
                     <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
                         <div className="flex justify-center mb-4">
                             <img
@@ -81,8 +83,8 @@ import Loader from "./Loader";
                                 Back to login
                             </a>
                         </div>
-                    </div>)};
-                </div>
+                    </div>
+                </div>)};
             </React.StrictMode>
         );
     }
