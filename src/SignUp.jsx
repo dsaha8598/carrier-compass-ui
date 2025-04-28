@@ -136,43 +136,57 @@ class SignUp extends Component {
 
   signUpPageContent = (errors, acceptTerms) => {
     const today = new Date().toISOString().split('T')[0];
-
+  
     return (
-      <div className="absolute top-0 left-0 w-screen h-screen flex items-center justify-center bg-gray-100 overflow-auto">
+      <div className="absolute top-0 left-0 w-screen h-screen flex flex-col items-center justify-start bg-gray-100 overflow-auto">
         <header className="absolute top-4 left-4 flex items-center">
           <img
             alt="Compass Logo"
-            className="h-10 w-10"
+            className="h-8 w-8 sm:h-10 sm:w-10"
             src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg"
           />
-          <h1 className="text-2xl font-bold ml-3 text-left text-orange-500">CareerCompass</h1>
+          <h1 className="text-xl sm:text-2xl font-bold ml-2 sm:ml-3 text-orange-500">
+            CareerCompass
+          </h1>
         </header>
-
-        <div className="bg-white rounded-3xl shadow-lg p-8 md:p-12 max-w-3xl w-full flex flex-col md:flex-row items-center mt-16">
-          <div className="w-full md:w-1/2 flex flex-col items-start">
-            <p className="mb-6">Congratulations on taking your first step with us.</p>
+  
+        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 w-11/12 max-w-5xl flex flex-col md:flex-row items-center mt-20 md:mt-28 mb-10">
+          
+          {/* Left Section */}
+          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left">
+            <p className="mb-4 sm:mb-6 text-sm sm:text-base">
+              Congratulations on taking your first step with us.
+            </p>
             <img
               alt="Illustration of a girl filling form"
-              className="w-3/4 md:w-full object-cover"
+              className="w-3/4 sm:w-2/3 md:w-full object-cover"
               src={SignupBackgroundImage}
             />
           </div>
-
+  
+          {/* Right Section */}
           <div className="w-full md:w-1/2 mt-8 md:mt-0 md:ml-8">
-            <h2 className="text-3xl font-bold mb-6">Create an account</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
+              Create an account
+            </h2>
             <form onSubmit={this.handleSubmit} noValidate>
+              
               {/* Input Fields */}
-              {[ 
+              {[
                 { name: "name", label: "Name", type: "text" },
                 { name: "email", label: "Email Address", type: "email" },
                 { name: "phone", label: "Phone Number", type: "text" },
                 { name: "password", label: "Password", type: "password" },
                 { name: "confirmPassword", label: "Confirm Password", type: "password" },
               ].map(({ name, label, type }) => (
-                <div className="mb-4" key={name}>
-                  <label className="block text-gray-700" htmlFor={name}>{label}</label>
+                <div className="mb-3 sm:mb-4" key={name}>
+                  <label className="block text-gray-700 text-sm sm:text-base" htmlFor={name}>
+                    {label}
+                  </label>
                   <input
-                    className={`w-full p-3 border rounded-lg mt-1 ${errors[name] ? 'border-red-500' : 'border-gray-300'}`}
+                    className={`w-full p-2 sm:p-3 border rounded-lg mt-1 ${
+                      errors[name] ? "border-red-500" : "border-gray-300"
+                    }`}
                     id={name}
                     name={name}
                     type={type}
@@ -180,16 +194,20 @@ class SignUp extends Component {
                     onChange={this.handleChange}
                   />
                   {errors[name] && (
-                    <p className="text-sm text-red-500 mt-1">{errors[name]}</p>
+                    <p className="text-xs sm:text-sm text-red-500 mt-1">{errors[name]}</p>
                   )}
                 </div>
               ))}
-
+  
               {/* Date of Birth */}
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="dateOfBirth">Date of Birth</label>
+              <div className="mb-3 sm:mb-4">
+                <label className="block text-gray-700 text-sm sm:text-base" htmlFor="dateOfBirth">
+                  Date of Birth
+                </label>
                 <input
-                  className={`w-full p-3 border rounded-lg mt-1 ${errors.dateOfBirth ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`w-full p-2 sm:p-3 border rounded-lg mt-1 ${
+                    errors.dateOfBirth ? "border-red-500" : "border-gray-300"
+                  }`}
                   id="dateOfBirth"
                   name="dateOfBirth"
                   type="date"
@@ -198,17 +216,21 @@ class SignUp extends Component {
                   onChange={this.handleChange}
                 />
                 {errors.dateOfBirth && (
-                  <p className="text-sm text-red-500 mt-1">{errors.dateOfBirth}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.dateOfBirth}</p>
                 )}
               </div>
-
+  
               {/* Gender */}
-              <div className="mb-4">
-                <label className="block text-gray-700" htmlFor="gender">Gender</label>
+              <div className="mb-3 sm:mb-4">
+                <label className="block text-gray-700 text-sm sm:text-base" htmlFor="gender">
+                  Gender
+                </label>
                 <select
                   id="gender"
                   name="gender"
-                  className={`w-full p-3 border rounded-lg mt-1 ${errors.gender ? 'border-red-500' : 'border-gray-300'}`}
+                  className={`w-full p-2 sm:p-3 border rounded-lg mt-1 ${
+                    errors.gender ? "border-red-500" : "border-gray-300"
+                  }`}
                   value={this.state.gender}
                   onChange={this.handleChange}
                 >
@@ -218,12 +240,12 @@ class SignUp extends Component {
                   <option value="Other">Other</option>
                 </select>
                 {errors.gender && (
-                  <p className="text-sm text-red-500 mt-1">{errors.gender}</p>
+                  <p className="text-xs sm:text-sm text-red-500 mt-1">{errors.gender}</p>
                 )}
               </div>
-
+  
               {/* Terms and Conditions */}
-              <div className="flex items-start mb-4">
+              <div className="flex items-start mb-4 text-sm sm:text-base">
                 <input
                   id="acceptTerms"
                   name="acceptTerms"
@@ -232,31 +254,39 @@ class SignUp extends Component {
                   checked={acceptTerms}
                   onChange={this.handleChange}
                 />
-                <label className="text-gray-600 text-sm" htmlFor="acceptTerms">
+                <label className="text-gray-600" htmlFor="acceptTerms">
                   By registering, you agree to our{" "}
-                  <a className="text-orange-500" href="#/" onClick={this.handleTermsClick}>Terms & Conditions</a> and{" "}
-                  <a className="text-orange-500" href="#/terms">Privacy Policy</a>.
+                  <a className="text-orange-500" href="#/" onClick={this.handleTermsClick}>
+                    Terms & Conditions
+                  </a>{" "}
+                  and{" "}
+                  <a className="text-orange-500" href="#/terms">
+                    Privacy Policy
+                  </a>.
                 </label>
               </div>
               {errors.acceptTerms && (
-                <p className="text-sm text-red-500 mb-4">{errors.acceptTerms}</p>
+                <p className="text-xs sm:text-sm text-red-500 mb-4">{errors.acceptTerms}</p>
               )}
-
+  
               {/* Submit Button */}
-              <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center justify-between mb-4 sm:mb-6">
                 <button
-                  className="bg-orange-600 text-white py-3 px-6 rounded-lg font-bold hover:bg-orange-700 transition-colors"
+                  className="bg-orange-600 text-white py-2 sm:py-3 px-4 sm:px-6 rounded-lg font-bold hover:bg-orange-700 transition-colors w-full"
                   type="submit"
                 >
                   REGISTER
                 </button>
               </div>
             </form>
-
+  
             {/* Sign In Link */}
-            <div className="mt-6 text-center">
+            <div className="mt-4 sm:mt-6 text-center text-sm sm:text-base">
               <p className="text-gray-700">Already have an account?</p>
-              <a className="text-orange-600 font-bold mt-2 inline-block" href={"/#" + ROUTER_URLS.LOGIN_URL}>
+              <a
+                className="text-orange-600 font-bold mt-1 inline-block"
+                href={"/#" + ROUTER_URLS.LOGIN_URL}
+              >
                 SIGN IN
               </a>
             </div>
@@ -265,6 +295,7 @@ class SignUp extends Component {
       </div>
     );
   };
+  
 }
 
 export default withRouter(SignUp);
