@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  GraduationCap,
-  Stethoscope,
-  Settings,
-  Pill
-} from "lucide-react";
+import { GraduationCap, Stethoscope, Settings, Pill } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { withAuth } from "../AuthContext/withAuth";
 
@@ -95,7 +90,7 @@ class SkillSuggestion extends Component {
           Recommended Skills
         </h3>
 
-        <div className="overflow-x-auto  p-4 rounded-2xl relative">
+        <div className="overflow-x-auto p-4 rounded-2xl relative">
           <div
             className="grid grid-flow-col auto-cols-max grid-rows-2 gap-4 pr-4 overflow-visible"
             style={{ minWidth: "100%" }}
@@ -103,7 +98,7 @@ class SkillSuggestion extends Component {
             {skills.map((skill, index) => (
               <div
                 key={index}
-                className="relative group  border border-orange-600 p-8 rounded-3xl shadow-md flex flex-col items-center text-center transition-all hover:shadow-lg hover:scale-105 w-52 h-48"
+                className="relative group border border-orange-600 p-8 rounded-3xl shadow-md flex flex-col items-center text-center transition-all hover:shadow-lg hover:scale-105 w-52 h-48"
                 onMouseEnter={() => this.setState({ hoveredIndex: index })}
                 onMouseLeave={() => this.setState({ hoveredIndex: null })}
               >
