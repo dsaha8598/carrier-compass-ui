@@ -68,7 +68,7 @@ class OtpValidation extends Component {
         this.startTimer();
 
         try {
-            const response = await fetch(`http://localhost:8181/careerCompass/user/send/otp?email=${this.props.location?.state?.email}&pageSource=${this.props.location?.state?.pageSource}`, 
+            const response = await fetch(`${ROUTER_URLS.SERVER_URL}/user/send/otp?email=${this.props.location?.state?.email}&pageSource=${this.props.location?.state?.pageSource}`, 
                 {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
@@ -110,7 +110,7 @@ class OtpValidation extends Component {
         this.setState({ loading: true, error: null });
 
         try {
-            const response = await fetch(`http://localhost:8181/careerCompass/user/validate/otp?email=${email}&otp=${otpString}&pageSource=${pageSource}`, {
+            const response = await fetch(`${ROUTER_URLS.SERVER_URL}/user/validate/otp?email=${email}&otp=${otpString}&pageSource=${pageSource}`, {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             });
