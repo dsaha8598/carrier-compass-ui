@@ -187,16 +187,23 @@ const Dashboard = () => {
               </div>
 
               {/* What's Next + Skill Suggestion */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-                {selectedQualification ? (
-                  <WhatNext qualification={selectedQualification} />
-                ) : (
-                  <div className="relative w-full h-[680px] flex flex-col items-center justify-start bg-white">
-                    <p>Please select a qualification to see what's next.</p>
-                  </div>
-                )}
-                <SkillSuggestion />
-              </div>
+              {/* What's Next + Skill Suggestion */}
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 w-full">
+  <div className="w-full">
+    {selectedQualification ? (
+      <WhatNext qualification={selectedQualification} />
+    ) : (
+      <div className="relative w-full min-h-[400px] flex flex-col items-center justify-start bg-white">
+        <p className="text-gray-700 text-center p-4">
+          Please select a qualification to see what's next.
+        </p>
+      </div>
+    )}
+  </div>
+  <div className="w-full">
+    <SkillSuggestion />
+  </div>
+</div>
             </div>
           )}
 

@@ -77,7 +77,8 @@ const WhatNext = ({ qualification }) => {
   }
 
   return (
-    <div className="relative w-full h-[700px] flex flex-col items-center justify-start bg-white overflow-hidden">
+    <div className="relative w-full min-h-[500px] md:min-h-[700px] flex flex-col items-center justify-start bg-white overflow-hidden">
+
       {/* Heading */}
       <div className="text-center mt-6 mb-8">
         <h2 className="text-3xl font-bold text-orange-600 mb-2">What's Next in Your Career?</h2>

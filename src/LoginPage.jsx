@@ -80,9 +80,7 @@ class Login extends Component {
             src={Logo}
             width="50"
           />
-          <h1 className="text-2xl font-bold ml-3 text-left text-orange-500">
-            CareerCompass
-          </h1>
+          
         </header>
 
         <div className="flex items-center justify-center w-full min-h-screen">
