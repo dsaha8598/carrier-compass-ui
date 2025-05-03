@@ -1,7 +1,7 @@
 const ROUTER_URLS = {
     BASE_URL: "https://api.example.com",
-    //SERVER_URL: "http://localhost:8181/careerCompass",//"http://localhost:8181/careerCompass",//https://dipak-repository-latest.onrender.com/
-    SERVER_URL: "https://dipak-repository-latest.onrender.com/careerCompass",
+    SERVER_URL: "http://localhost:8181/careerCompass",//"http://localhost:8181/careerCompass",//https://dipak-repository-latest.onrender.com/
+    //SERVER_URL: "https://dipak-repository-latest.onrender.com/careerCompass",
     HOME_URL: "/home",
     LOGIN_URL: "/login",
     SIGN_UP_URL: "/carrier-compass-ui/#/signup",

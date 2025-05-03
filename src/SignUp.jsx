@@ -91,10 +91,15 @@ class SignUp extends Component {
 
         const result = await response.json();
         console.log("Server Response:", result);
-        this.setState({ loading: false, error: null });
+        if(result.error != null){
+          this.setState({ loading: false, error: result.error });
+        }else{
+          this.setState({ loading: false, error: null});
 
-        this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
-
+          this.props.navigate("/verify/otp", { state: { email: this.state.email, pageSource: "signUp" } });
+  
+        }
+        
       } catch (error) {
         console.error("Registration failed:", error);
         this.setState({ loading: false, error: "Registration failed" });
@@ -169,6 +174,9 @@ class SignUp extends Component {
             <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">
               Create an account
             </h2>
+            {this.state.error && (
+                <p className="text-xs sm:text-sm text-red-500 mb-4">{this.state.error}</p>
+              )}
             <form onSubmit={this.handleSubmit} noValidate>
               
               {/* Input Fields */}
