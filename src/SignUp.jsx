@@ -145,11 +145,11 @@ class SignUp extends Component {
     return (
       <div className="absolute top-0 left-0 w-screen h-screen flex flex-col items-center justify-start bg-gray-100 overflow-auto">
         <header className="absolute top-4 left-4 flex items-center">
-          <img
+        <a href="https://dsaha8598.github.io/carrier-compass-ui/"><img
             alt="Compass Logo"
             className="h-8 w-8 sm:h-10 sm:w-10"
             src="https://storage.googleapis.com/a1aa/image/RLb3e9uXSrTC3cYDHFWmqQTIr39KE6mGyV3KjWVY-u4.jpg"
-          />
+          /></a>
           <h1 className="text-xl sm:text-2xl font-bold ml-2 sm:ml-3 text-orange-500">
             CareerCompass
           </h1>
@@ -293,7 +293,7 @@ class SignUp extends Component {
               <p className="text-gray-700">Already have an account?</p>
               <a
                 className="text-orange-600 font-bold mt-1 inline-block"
-                href={"/#" + ROUTER_URLS.LOGIN_URL}
+                href={"/carrier-compass-ui/#/login" + ROUTER_URLS.LOGIN_URL}
               >
                 SIGN IN
               </a>

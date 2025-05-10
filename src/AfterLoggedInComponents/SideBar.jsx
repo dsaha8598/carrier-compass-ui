@@ -24,7 +24,7 @@ class SideBar extends Component {
   handleLogout = async (e) => {
     e.preventDefault();
     this.props.auth.logout();
-    this.props.navigate(ROUTER_URLS.BASE_URL || "/");
+    this.props.navigate("https://dsaha8598.github.io/carrier-compass-ui/#" || "/");
   };
 
   toggleMenu = () => {

@@ -73,13 +73,13 @@ class Login extends Component {
    return (
       <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-100">
         <header className="absolute top-4 left-4 flex items-center">
-          <img
+         <a href="https://dsaha8598.github.io/carrier-compass-ui/#"><img
             alt="Compass Logo"
             className="h-10 w-10"
             height="50"
             src={Logo}
             width="50"
-          />
+          /></a> 
           
         </header>
 
